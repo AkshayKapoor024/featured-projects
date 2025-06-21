@@ -64,4 +64,4 @@
 ---
 
 <p align="center"><i>“Grateful for what I’ve learnt, excited for what’s next.”</i></p>
-<p align="center"><b>– Akshay Kapoo
+<p align="center"><b>– Akshay Kapoor
