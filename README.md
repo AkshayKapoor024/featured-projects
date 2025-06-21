@@ -40,7 +40,7 @@
 
 #### 🧰 Tools & Languages  
 <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" width="22"/>**Postman**  
-<img src="https://raw.githubusercontent.com/hoppscotch/hoppscotch/main/public/logo-256.png" width="22"/>**Hoppscotch**  
+<img src="https://cdn.worldvectorlogo.com/logos/hoppscotch.svg" width="22"/>**Hoppscotch**  
 <img src="https://img.icons8.com/color/48/git.png" width="22"/> **Git**  
 <img src="https://img.icons8.com/color/48/github.png" width="22"/> **GitHub**  
 <img src="https://img.icons8.com/color/48/visual-studio-code-2019.png" width="22"/> **VS Code**  
