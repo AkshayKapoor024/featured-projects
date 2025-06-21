@@ -1,0 +1,127 @@
+<% layout('./layouts/boilerplate') %>
+
+    <div><%- include('../includes/revAdd.ejs') %></div>
+    <div><%- include('../includes/revDlt.ejs') %></div>
+    <div><%- include('../includes/error.ejs') %></div>
+<script>
+    const mapToken = "<%=process.env.MAP_TOKEN%>"
+    console.log(`Hello`)
+    const listing = <%-JSON.stringify(obj)%>;
+    const coordinates = JSON.parse("<%- JSON.stringify(obj.geometry.coordinates) %>");
+
+</script>
+    <div class="row">
+        <div class="col-8 offset-4">
+            <!-- Listing Card -->
+            <div class="card listing-card col-8 show-card mb-5">
+                <img src="<%= obj.image.url %>" class="card-img-top card-image-show" alt="No Image Available">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= obj.title %>
+                    </h5>
+                    <p class="mb-3">Posted By -> <%= obj.owner.username %>
+                    </p>
+                    <p>
+                        <%= obj.description %>
+                    </p>
+                    <p>&#8377; <%= obj.price.toLocaleString("in-IN") %> /night</p>
+                    <p>
+                        <%= obj.location %>
+                    </p>
+                    <p>
+                        <%= obj.country %>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Buttons (Edit / Delete) -->
+            <div class="btns" >
+                <form action="/listings/<%=obj._id %>/edit" class="offset-1 mt-2">
+                    <button class="but2 btn btn-danger" id="<%= obj._id %>">Edit This Post</button>
+                </form>
+                <form action="/listings/<%=obj._id%>?_method=DELETE" method="post" class="mt-2">
+                    <button id="but3" data-id="<%= obj._id %>" class="btn btn-dark" type="submit">Delete This
+                        Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Leave a Review Section -->
+    <div class="row mt-5">
+        <div class="col-8 offset-1">
+            <hr>
+            <form action="/listings/<%= obj._id %>/reviews" method="post" novalidate class="needs-validation">
+                <div>
+                    <h2>Leave a Review</h2>
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="rating" class="form-label">Give a rating</label>
+                    <fieldset class="starability-slot">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                </div>
+
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea name="comment" id="comment" placeholder="Your thoughts on this place" class="form-control"
+                        required></textarea>
+                    <div class="invalid-feedback">Please enter a comment before submitting</div>
+                </div>
+
+                <button type="submit" class="btn btn-outline-success mb-5">Submit Review</button>
+            </form>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Previous Reviews Section -->
+    <div class="row">
+        <div class="col-8 offset-1">
+            <% if (obj.reviews.length) { %>
+                <h3>Previous Reviews</h3>
+                <% } %>
+
+                    <% for (let review of obj.reviews) { %>
+                        <div class="card mt-2 mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%=review.author.username%>
+                                </h5>
+                                <p class="card-text">
+                                <p class="starability-result" data-rating="<%=review.rating%>">
+                                    Rated: 3 stars
+                                </p>
+                                </p>
+                                <div class="card-text newpara">
+                                    <%= review.comment %>
+                                        <form action="/listings/<%= obj._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                            method="post">
+                                            <button type="submit" class="btn btn-outline-danger mt-2">Delete
+                                                Review</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                 <% } %>
+        </div>
+</div>
+<!--Preview maps inside the webpage-->
+    <div class="row">
+        <div class="col-6 mb-5">
+            <h1 class="mb-3 offset-4">Where You'll Be</h1>
+            <div id="map"></div>
+        </div>
+</div>
+<script src="/js/map.js"></script>

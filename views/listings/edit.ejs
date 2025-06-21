@@ -1,0 +1,56 @@
+<%layout('/layouts/boilerplate')%>
+
+    <body>
+        <div class="row">
+            <div class="col-8">
+                <h1 class="offset-5">Edit details</h1>
+                <!--Enctype multipart for sending files-->
+                <form action="http://localhost:3000/listings/<%=obj.id%>?_method=PATCH" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+                    <div class="mb-3">
+
+                        <label for="title" class="form-label">Enter Place Title</label>
+                        <input type="text" name="title" class="form-control" value="<%=obj.title%>" required>
+                        <div class="invalid-feedback">Please Enter a valid title</div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="desc" class="form-label">Enter Place Description</label>
+                        <textarea name="desc" id="desc" class="form-control" required><%=obj.description%></textarea>
+                        <div class="invalid-feedback">Please Enter a valid description</div>
+                    </div>
+                    <div class="mb-3">
+                        <h4>Previous Image</h4>
+                        <div><img src="<%=previousImageUrl%>" alt="No Image Available"></div>
+                        <label for="image" class="form-label">Upload new image</label>
+                        <input type="file" name="image"  class="form-control">
+                    </div>
+
+
+                    <div class="row">    
+                        <div class=" col-md-4 mb-3">
+                            
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" name="price" class="form-control" value="<%=obj.price%>" required>
+                            <div class="invalid-feedback">Please Enter a valid price</div>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            
+                            <label for="location" class="form-label">Enter location</label>
+                            <input type="text" name="location" class="form-control" required value="<%=obj.location%>">
+                            <div class="invalid-feedback">Please Enter a valid location</div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label for="country" class="form-label">Enter Country</label>
+                        <input type="text" name="country" class="form-control" required value="<%=obj.country%>">
+                        <div class="invalid-feedback">Please Enter a valid country</div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                </form>
+            </div>
+        </div>
+    </body>

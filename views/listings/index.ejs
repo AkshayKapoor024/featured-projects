@@ -1,0 +1,93 @@
+<%layout('/layouts/boilerplate')%>
+<style>
+  .filters{
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 0 2px 2px 0px rgba(119, 119, 119, 0.178);
+  }
+  .filter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+  }
+  .filter:hover{
+    opacity: 1;
+    cursor:pointer;
+  }
+</style>
+<body>
+    <div><%-include('../includes/listAdd.ejs')%></div>
+    <div><%-include('../includes/listDlt.ejs')%></div>
+    <div><%-include('../includes/error.ejs')%></div>
+    <div><%-include('../includes/Usererror.ejs')%></div>
+    <div><%-include('../includes/Usersuccess.ejs')%></div>
+    <div><%-include('../includes/Loginsuccess.ejs')%></div>
+
+    <div class="filters mt-3 mb-3">
+        <div class="filter">
+          <div class="icon"><i class="fa-solid fa-fire" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Trending</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-bed" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Hotels</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-mountain-city" style="color: #ff0000;"></i></i></div>
+          <div class="iconDesc">Iconic Cities</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-mountain" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Mountains</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-chess-rook" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Castles</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-person-swimming" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Pools</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-campground" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Campfires</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-tractor" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Farms</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-snowflake" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Arctic</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-umbrella-beach" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Beaches</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-landmark" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Monuments</div>
+        </div>
+        <div class="filter">
+<div class="icon"><i class="fa-solid fa-gamepad" style="color: #ff0000;"></i></div>
+          <div class="iconDesc">Fun activities</div>
+        </div>
+    </div>
+   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <% for(let item of mylist) { %>
+    <div class="card listing-card mb-4" data-id="<%=item._id%>">
+      <img src="<%=item.image.url%>" class="card-img-top" alt="No Image Available">
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="heading"><%=item.title%></div>
+          <div class="price">&#8377;<%= item.price ? item.price.toLocaleString("in-IN") : "Loading..." %>/night</div>
+        </p>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+</body>

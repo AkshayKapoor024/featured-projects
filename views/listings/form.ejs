@@ -1,0 +1,51 @@
+<%layout('/layouts/boilerplate')%>
+<body>
+    
+    <h2 style="text-align: center;">Add Your details</h2>
+    <div class="row">
+        <div class="col-8">
+            <!--Validations in form using bootstrap and also grid created using it-->
+            <!--Enctype multipart for sending files-->
+            <form action="http://localhost:3000/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+                 <div class="row mb-4">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" name="title" placeholder="Enter title here..." required>
+                    <div class="invalid-feedback">Please Enter a valid title</div>
+                </div>
+                
+                <div class="row mb-4">
+                    <label class="form-label" for="desc">Description</label>
+                    <textarea name="desc" id="desc" class="form-control" placeholder="Describe your place" required></textarea>
+                    <div class="invalid-feedback">Please Enter a valid Description</div>
+                </div>
+                <div class="row mb-4">
+                    <label class="form-label" for="image">Upload an image</label>
+                    <input class="form-control" type="file" name="image" placeholder="Enter Image url/Link">
+                </div>
+                
+                <div class="row">
+                    
+                    
+                    <div class="mb-4 col-md-4">
+                        <label class="form-label" for="price">Price</label>
+                        <input class="form-control" type="number" name="price" required>
+                        <div class="invalid-feedback">Please Enter a valid price</div>
+                    </div>
+                    <div class="mb-4 col-md-8">
+                        <label class="form-label" for="location">Location</label>
+                        <input class="form-control" type="text" name="location" placeholder="Enter location" required>
+                        <div class="invalid-feedback">Please Enter a valid location</div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" name="country" placeholder="Enter Country" required>
+                    <div class="invalid-feedback">Please Enter a valid country</div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>        

@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+.navbar {
+    height: 8vh;
+    background-color: white;
+}
+
+/*Boilerplate ejs*/
+::-webkit-scrollbar {
+    width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(38, 38, 38);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(86, 86, 86);
+    border-radius: 0;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container-fluid {
+    flex: 1;
+}
+
+.nav-link {
+    color: black;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+footer {
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.f-social {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+    gap: 1vw;
+}
+
+.f-head {
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    width: 100%;
+    margin-left: 1%;
+}
+
+.f-links a {
+    text-decoration: none;
+    color: black;
+}
+
+.f-links a:hover {
+    text-decoration: underline;
+}
+
+/*All Listings page*/
+.listing-card {
+    margin: 0px;
+    padding: 0px;
+    margin: 1%;
+    border: none;
+    width: 25% !important;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5rem;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.3;
+    background-color: white;
+    cursor: pointer;
+}
+
+/*Edit and New form page*/
+.form-label {
+    font-weight: 400;
+}
+
+/*Show Page*/
+.show-card {
+    height: 68vh !important;
+    width: 50% !important;
+
+}
+
+.card-text {
+    margin: 0;
+    padding: 0;
+}
+
+.card-image-show {
+    height: 45vh;
+}
+
+.btns {
+    display: flex;
+    gap: 3%;
+    margin-left: 2%;
+}
+
+.newpara {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+/*For maps*/
+#map { 
+    width: 50vw;
+    height:50vh;
+ }

@@ -1,0 +1,48 @@
+<style>
+  .search{
+    background-color: rgb(255, 0, 0);
+    color:white;
+  }
+  .search:hover{
+ background-color: red;
+    color:white;
+  }
+  #searchbar{
+    width:50vw;
+  }
+  .search{
+    border-radius:1rem;
+    width: 6rem;
+    height: 3rem;
+  }
+</style>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><i class="fa-regular fa-2xl fa-compass" style="color: #ff0000;"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/listings">Explore</a>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search">
+              <input id="searchbar" class="form-control me-2 col-12" type="search" placeholder="Search destination" aria-label="Search"/>
+              <button class="btn btn-outline-success search" type="submit">Search</button>
+
+    </form>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings/new">Voyagr your new home </a>
+          <!--Taking user info from res.locals-->
+          <%if(!currentuser){%>
+            <a class="nav-link active" aria-current="page" href="/signup"><b>Sign Up</b></a>
+            <a class="nav-link active" aria-current="page" href="/login"><b>Log in</b></a>
+            <%}else{%>
+              <a class="nav-link" href="/logout">Log Out </a>
+              <%}%>
+        </div>
+      </div>
+    </div>
+  </nav>
