@@ -1,97 +1,67 @@
-<!-- Header section with greeting and animation -->
-<h1 align="center">Hi 👋, I'm Akshay</h1>
-<h3 align="center">A passionate Full-Stack Developer & B.Tech CSE Student</h3>
+<!-- Professional Header -->
+<h1 align="center" style="font-weight: bold; font-size: 2.5rem;">AKSHAY KAPOOR</h1>
+<h4 align="center">Software Developer | Tech Enthusiast | Always Building, Always Learning</h4>
 
-<!-- Short animated description -->
+<!-- Typing animation description -->
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=24&pause=1000&color=36BCF7&center=true&vCenter=true&width=435&lines=Full+Stack+MERN+Developer;Open+Source+Contributor;Hackathon+Finalist+%26+Team+Player;Always+Learning+%26+Building" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=22&pause=1000&color=1ED760&center=true&vCenter=true&width=450&lines=MERN+Stack+Web+Developer;Data+Structures+and+Algorithms;Open+Source+Contributor;Hackathon+%26+Coding+Contest+Participant" alt="Typing SVG" />
 </p>
 
 ---
 
 ### 🧑‍💻 About Me
 
-- 🔭 I’m currently working on: **[Project Name]**  
-- 🌱 I’m currently learning: **DSA | System Design | Advanced MERN Stack | GenAI APIs**
-- 💡 I love building: **real-world tools, APIs, and browser extensions**
-- 🏆 Participating in: **Walmart Sparkathon 2025** (logistics & sustainability hack)
-- ⚡ Fun Fact: I can debug anything with enough chai ☕
+- A highly curious developer pursuing **B.Tech in Computer Science**, exploring both **development** and **problem-solving**.
+- I love working on meaningful tech — from full-stack apps to automation tools and AI-integrated utilities.
+- Actively learning and applying concepts in **MERN stack, DSA, system design**, and using AI tools to enhance productivity.
+- Passionate about real-world problem-solving, browser extensions, APIs, and tech communities.
+- Open to opportunities, collaborations, and constant upskilling — one line of code at a time.
 
 ---
 
-### 💻 Tech Stack
+### 🛠️ Tech Stack & Skills
 
-**Languages:**  
-![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript) 
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178c6?style=flat-square&logo=typescript)  
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python)  
-![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java)
+#### 🚀 Frontend  
+- ⚛️ **React.js**, 🎨 **Tailwind CSS**, 🌐 **HTML**, 🎯 **CSS**, 💡 **JavaScript**
 
-**Frontend:**  
-![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react)  
-![Tailwind](https://img.shields.io/badge/-TailwindCSS-38B2AC?style=flat-square&logo=tailwind-css)
+#### 🧠 Backend  
+- 🟩 **Node.js**, 🖤 **Express.js**, 📦 **npm**, 📄 **EJS**, 🧩 **EJS-Mate**
 
-**Backend:**  
-![Node.js](https://img.shields.io/badge/-Node.js-green?style=flat-square&logo=node.js)  
-![Express](https://img.shields.io/badge/-Express-black?style=flat-square&logo=express)
+#### 🗃️ Databases  
+- 🍃 **MongoDB**, 🗄️ **SQL**
 
-**Database & Auth:**  
-![MongoDB](https://img.shields.io/badge/-MongoDB-4EA94B?style=flat-square&logo=mongodb)  
-![Firebase](https://img.shields.io/badge/-Firebase-yellow?style=flat-square&logo=firebase)
-
-**DevOps & Tools:**  
-![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git)  
-![Postman](https://img.shields.io/badge/-Postman-orange?style=flat-square&logo=postman)  
-![VS Code](https://img.shields.io/badge/-VSCode-blue?style=flat-square&logo=visual-studio-code)
+#### 🧰 Tools & Languages  
+- ⚒️ **Hoppscotch**, 📬 **Postman**, 🧑‍💻 **VS Code**, 🌍 **Git & GitHub**  
+- 📘 **C**, 🧮 **C++**, 🐍 **Python**, ☕ **Java**  
+- 🧠 **DSA**, 📚 **OOPs**, 🤖 **AI Tools (ChatGPT, Gemini APIs)**
 
 ---
 
 ### 🏆 Achievements
 
-- 🥇 Finalist in **Walmart Sparkathon 2025**
-- 🧠 Solved 130+ DSA problems across LeetCode & GFG
-- 🛠️ Built 5+ full-stack web projects, including extensions and real-time apps
-- 📜 Interned at [Company Name] or Completed [relevant certification]
+- 🧩 Participated in **11+ Hackathons** across various domains
+- 🥇 **Gold Medal** on HackerRank in **C** and **C++**
+- 💻 Built **5+ MERN stack full-stack projects** with practical use cases
 
 ---
 
-### 📈 GitHub Stats
+### 🤝 Let's Connect
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=yourusername&show_icons=true&theme=tokyonight" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=yourusername&layout=compact&theme=tokyonight" />
-</p>
-
----
-
-### 📫 Let's Connect
-
-<p align="left">
-  <a href="mailto:your.email@example.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white"/></a>
-  <a href="https://www.linkedin.com/in/yourlinkedin"><img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white"/></a>
-  <a href="https://your-portfolio-link.com"><img src="https://img.shields.io/badge/-Portfolio-black?style=flat-square&logo=github"/></a>
-</p>
+- 📧 **Email:** [work.akshaykapoor24@gmail.com](mailto:work.akshaykapoor24@gmail.com)  
+- 💼 **LinkedIn:** [linkedin.com/in/kapoorakshay24](https://www.linkedin.com/in/kapoorakshay24)  
+- 🧑‍💻 **GitHub Profile:** [github.com/AkshayKapoor024](https://github.com/AkshayKapoor024)
 
 ---
 
-### 🔗 Featured Projects
+### 📂 Featured Projects
 
-| Name | Tech | Description | Link |
-|------|------|-------------|------|
-| 📦 FormEscape | MERN + Extension | Autofills and reminds form submissions | [GitHub](https://github.com/...) |
-| 🌱 EcoBoxify | MERN + ML API | Smart warehouse packaging optimizer | [GitHub](https://github.com/...) |
-| 📍 NomadNest | MERN + Mapbox | Airbnb-like listings with custom maps | [GitHub](https://github.com/...) |
-
----
-
-### ⚒️ Tools I Use
-
-- React.js, Node.js, Express, MongoDB
-- VS Code, Git, GitHub, Postman
-- Figma for design, Notion for docs
-- ChatGPT & APIs for productivity
+| Project Name | Tech Stack | Description | Link |
+|--------------|------------|-------------|------|
+|              |            |             |      |
+|              |            |             |      |
+|              |            |             |      |
 
 ---
 
-> “Code for impact, not just for deployment.”  
-> – Akshay
+<p align="center"><i>“Grateful for what I’ve learnt, excited for what’s next.”</i></p>
+<p align="center"><b>– Akshay Kapoo
