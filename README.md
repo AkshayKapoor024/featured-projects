@@ -1,5 +1,8 @@
-<!-- Professional Header -->
-<h1 align="center" style="font-weight: bold; font-size: 2.5rem;">AKSHAY KAPOOR</h1>
+<p align="center">
+  <img src="C:\Users\beast\OneDrive\Desktop\Profile" alt="Akshay Kapoor" width="120" height="120" style="border-radius: 50%;"/>
+</p>
+
+<h1 align="center"><strong>AKSHAY KAPOOR</strong></h1>
 <h4 align="center">Software Developer | Tech Enthusiast | Always Building, Always Learning</h4>
 
 <!-- Typing animation description -->
