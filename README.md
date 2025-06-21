@@ -32,15 +32,15 @@
 <img src="https://img.icons8.com/color/48/nodejs.png" width="22"/> **Node.js**  
 <img src="https://img.icons8.com/color/48/express-js.png" width="22"/> **Express.js**  
 <img src="https://img.icons8.com/windows/32/npm.png" width="22"/> **npm**  
-<img src="https://seeklogo.com/images/E/ejs-logo-7C6BBA7F00-seeklogo.com.png" width="22"/> **EJS & EJS-Mate**
+<img src="https://seeklogo.com/images/E/ejs-logo-7C6BBA7F00-seeklogo.com.png" width="22"/>**EJS & EJS-Mate**
 
 #### 🗃️ Databases  
 <img src="https://img.icons8.com/color/48/mongodb.png" width="22"/> **MongoDB**  
 <img src="https://img.icons8.com/ios-filled/50/sql.png" width="22"/> **SQL**
 
 #### 🧰 Tools & Languages  
-<img src="https://img.icons8.com/color/48/postman-api.png" width="22"/> **Postman**  
-<img src="https://raw.githubusercontent.com/hoppscotch/hoppscotch/main/public/logo-256.png" width="22"/> **Hoppscotch**  
+<img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" width="22"/>**Postman**  
+<img src="https://raw.githubusercontent.com/hoppscotch/hoppscotch/main/public/logo-256.png" width="22"/>**Hoppscotch**  
 <img src="https://img.icons8.com/color/48/git.png" width="22"/> **Git**  
 <img src="https://img.icons8.com/color/48/github.png" width="22"/> **GitHub**  
 <img src="https://img.icons8.com/color/48/visual-studio-code-2019.png" width="22"/> **VS Code**  
