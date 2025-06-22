@@ -5,7 +5,7 @@
             <div class="col-8">
                 <h1 class="offset-5">Edit details</h1>
                 <!--Enctype multipart for sending files-->
-                <form action="http://localhost:3000/listings/<%=obj.id%>?_method=PATCH" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+                <form action="/listings/<%=obj.id%>?_method=PATCH" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
                     <div class="mb-3">
 
                         <label for="title" class="form-label">Enter Place Title</label>

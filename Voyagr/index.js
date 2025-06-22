@@ -89,6 +89,9 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.get('/',(req,res)=>{
+res.redirect('/listings')
+})
 
 //Using Route for the listing route
 app.use('/listings',listing)
