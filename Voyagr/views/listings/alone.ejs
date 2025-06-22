@@ -1,8 +1,8 @@
 <% layout('./layouts/boilerplate') %>
 
-    <div><%- include('includes/revAdd.ejs') %></div>
-    <div><%- include('includes/revDlt.ejs') %></div>
-    <div><%- include('includes/error.ejs') %></div>
+    <div><%- include('../includes/revAdd') %></div>
+    <div><%- include('../includes/revDlt') %></div>
+    <div><%- include('../includes/error') %></div>
 <script>
     const mapToken = "<%=process.env.MAP_TOKEN%>"
     console.log(`Hello`)
