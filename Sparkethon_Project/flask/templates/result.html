@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Packaging Recommendation Result</title>
+</head>
+<body>
+    <h2>Recommended Packaging Details</h2>
+    <ul>
+        {% for key, value in output.items() %}
+            {% if value.__class__ == dict %}
+                <li><strong>{{ key }}:</strong>
+                    <ul>
+                        {% for subkey, subval in value.items() %}
+                            <li>{{ subkey }}: {{ subval }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% else %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <br><a href="/">Back to Form</a>
+</body>
+</html>

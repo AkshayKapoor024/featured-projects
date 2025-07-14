@@ -21,7 +21,7 @@ const flash = require('connect-flash')
 const passport =require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user.js')
-let port = 3000
+let port = 5000
 //Cloud database connection string
 let cloud_db = process.env.ATLAS 
 app.set("view engine",'ejs')

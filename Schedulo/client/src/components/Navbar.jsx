@@ -1,0 +1,136 @@
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+  const [user,setUser] = useState({})
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/isAuthenticated', { withCredentials: true })
+      .then((res) => {
+        if (res.data && res.data.email) {
+          setIsAuthenticated(true);
+          setUser(res.data)
+        } else {
+          setIsAuthenticated(false);
+        }
+      })
+      .catch(() => {
+        setIsAuthenticated(false);
+      });
+  }, []);
+  const handleLogout = async () => {
+    try {
+      await axios.get('http://localhost:3000/logout', { withCredentials: true });
+      setIsAuthenticated(false);
+      toast.success('User logged out!!');
+      navigate('/temp-route');
+      setTimeout(() => navigate('/'), 0);
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <div
+        className="h-20 flex gap-x-5 shadow-md bg-indigo-400 text-gray-100 px-4"
+        style={{ fontFamily: 'Montserrat, sans-serif' }}
+      >
+        <Link
+          to="/"
+          className="text-2xl flex items-center justify-center w-52 2xl:text-4xl font-semibold gap-2"
+        >
+          <i className="fa-solid fa-calendar-week text-2xl"></i>Schedulo
+        </Link>
+
+        <div className="hidden sm:flex items-center justify-start flex-1 gap-x-3 text-l font-medium">
+          <Link to="/events" className="h-20 w-28 flex justify-center items-center">
+            Create Event
+          </Link>
+          <Link to="/myFeedbacks" className="h-20 w-32 flex justify-center items-center" >
+            Your feedback
+          </Link>
+        </div>
+
+        {/* Desktop Right Nav */}
+        <div className="hidden sm:flex items-center justify-center w-72 gap-x-4 text-xl font-semibold">
+          {isAuthenticated ? (
+            <button
+              onClick={() => navigate('/userDashboard')}
+              className="h-16 w-16 rounded-full bg-white text-indigo-600 flex justify-center items-center font-bold shadow-md hover:scale-105 transition"
+            >
+              <img src={user.profilepic} alt="No Image Available" className=' object-cover h-16 w-16 rounded-full'/>
+            </button>
+          ) : (
+            <>
+              <Link to="/login" className="h-20 w-28 flex justify-center items-center">
+                Login
+              </Link>
+              <Link to="/signup" className="h-20 w-28 flex justify-center items-center">
+                Sign-Up
+              </Link>
+            </>
+          )}
+        </div>
+
+        {/* Mobile Toggle Button */}
+        <div className="sm:hidden flex items-center ml-auto pr-4 text-2xl">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {isOpen && (
+        <div className="sm:hidden absolute right-4 top-20 bg-white text-gray-900 shadow-lg rounded-md z-10 w-48 transition-all duration-300 overflow-hidden font-semibold">
+          <Link
+            to="/events"
+            className="block px-4 py-2 hover:bg-indigo-200 transition"
+            onClick={() => setIsOpen(false)}
+          >
+            Create Event
+          </Link>
+          <Link
+            to="/myFeedbacks"
+            className="block px-4 py-2 hover:bg-indigo-200 transition"
+            onClick={() => setIsOpen(false)}
+          >
+            Your feedback
+          </Link>
+          {isAuthenticated ? (
+            <Link
+              to="/userDashboard"
+              className="block px-4 py-2 hover:bg-indigo-200 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="block px-4 py-2 hover:bg-indigo-200 transition"
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="block px-4 py-2 hover:bg-indigo-200 transition"
+                onClick={() => setIsOpen(false)}
+              >
+                Sign-Up
+              </Link>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

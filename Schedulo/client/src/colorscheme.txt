@@ -1,0 +1,18 @@
+| **Use Case**                  | **Tailwind Color Class**  | **Example**                       |
+| ----------------------------- | ------------------------- | --------------------------------- |
+| **Primary Brand Color**       | `blue-600`                | Buttons, links, highlights        |
+| **Secondary Color**           | `indigo-500`              | Hover states, accents             |
+| **Background (main)**         | `gray-100`                | Body background                   |
+| **Background (card)**         | `white` / `gray-50`       | Event cards, forms                |
+| **Navbar/Footer BG**          | `gray-800`                | Dark navbar/footer                |
+| **Navbar/Footer Text**        | `gray-100`                | Light text on dark BG             |
+| **Primary Text Color**        | `gray-900`                | Titles, labels                    |
+| **Secondary Text Color**      | `gray-600`                | Descriptions, subtitles           |
+| **Border Color**              | `gray-300`                | Card borders, dividers            |
+| **Success (e.g. RSVP)**       | `green-500`               | RSVP success, confirmations       |
+| **Error (e.g. Delete)**       | `red-500`                 | Delete actions, validation errors |
+| **Warning (e.g. form alert)** | `yellow-500`              | Missing info, reminders           |
+| **Info (e.g. tooltip)**       | `blue-400`                | Tooltip backgrounds               |
+| **Disabled/Muted**            | `gray-400` / `gray-200`   | Disabled buttons, inactive text   |
+| **Input Focus Ring**          | `focus:ring-blue-500`     | Input and form field focus states |
+| **Shadow/Depth**              | `shadow-md` / `shadow-lg` | Card elevation                    |
