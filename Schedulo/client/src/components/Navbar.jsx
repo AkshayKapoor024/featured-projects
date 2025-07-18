@@ -43,9 +43,9 @@ export default function Navbar() {
       >
         <Link
           to="/"
-          className="text-2xl flex items-center justify-center w-52 2xl:text-4xl font-semibold gap-2"
+          className="text-2xl flex items-center justify-center w-52 2xl:text-4xl font-semibold gap-2 px-5"
         >
-          <i className="fa-solid fa-calendar-week text-2xl"></i>Schedulo
+          <img width="48" height="48" src="https://img.icons8.com/external-others-phat-plus/64/external-calender-cyber-monday-color-line-others-phat-plus.png" alt="external-calender-cyber-monday-color-line-others-phat-plus"/>Schedulo
         </Link>
 
         <div className="hidden sm:flex items-center justify-start flex-1 gap-x-3 text-l font-medium">
@@ -55,6 +55,10 @@ export default function Navbar() {
           <Link to="/myFeedbacks" className="h-20 w-32 flex justify-center items-center" >
             Your feedback
           </Link>
+          <div className='ml-10 bg-gray-100 w-[50vw] h-[6vh] rounded-2xl flex '>
+            <input className='text-gray-400 w-[90%] rounded-l-2xl flex items-center p-5 text-base text-left 'placeholder='Search something here (Events , specific locations , users , fields etc. and many more)'/>
+            <div className='bg-indigo-600 w-[10%] rounded-r-2xl flex justify-center items-center hover:cursor-pointer btn h-full'><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1"/></div>
+          </div>
         </div>
 
         {/* Desktop Right Nav */}

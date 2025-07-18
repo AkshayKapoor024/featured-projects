@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 export default function Footer() {
     return (
         <div className="h-52 bg-indigo-400 text-gray-100 2xl:h-48 flex flex-col gap-y-2" style={{ fontFamily: 'Montserrat,sans-serif' }}>
-            <div className="text-2xl text-center 2xl:text-4xl font-semibold mt-2">&copy; Schedulo</div>
+            <div className="text-2xl text-center 2xl:text-4xl font-semibold mt-2 flex justify-center items-center gap-2"><img width="48" height="48" src="https://img.icons8.com/external-others-phat-plus/48/external-calender-cyber-monday-color-line-others-phat-plus.png" alt="external-calender-cyber-monday-color-line-others-phat-plus"/>Schedulo</div>
             <div className="text-center text-l font-medium">Making Your Event Management Easy!!</div>
             <div>
                 <div className="text-center mb-2">Contact Us at our socials</div>

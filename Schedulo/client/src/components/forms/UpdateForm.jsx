@@ -13,6 +13,7 @@ import EnumsSelector from './EnumsSelector'; // ✅ NEW
 export default function UpdateForm() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [bannerFile, setBannerFile] = useState(null);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -67,18 +68,30 @@ export default function UpdateForm() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+  function handleFileChange(e) {
+    setBannerFile(e.target.files[0]);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const payload = {
-        ...formData,
-        host: host?._id || null,
-        cohosts: cohosts.map(user => user._id),
-        enums: enums // ✅ Include updated tags
-      };
+      const payload = new FormData();
+      payload.append('title', formData.title);
+      payload.append('description', formData.description);
+      payload.append('type', formData.type);
+      payload.append('venue', formData.venue);
+      payload.append('date', formData.date);
+      payload.append('time', formData.time);
+      payload.append('host', host?._id || '');
+      payload.append('cohosts', JSON.stringify(cohosts.map(user => user._id)));
+      payload.append('enums', JSON.stringify(enums));
+      if (bannerFile) payload.append('image', bannerFile);
 
-      await axios.put(`http://localhost:3000/events/${id}/updateDetails`, payload);
+
+      await axios.put(`http://localhost:3000/events/${id}/updateDetails`, payload, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+
       toast.success('Success: Event updated');
       navigate(`/events/${id}`);
     } catch (error) {
@@ -106,7 +119,7 @@ export default function UpdateForm() {
     <div className="flex-1 flex justify-center items-center bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 auto-rows-min bg-white shadow-xl min-h-[800px] w-[1200px] m-5 gap-2"  encType="multipart/form-data"
+        className="grid grid-cols-1 auto-rows-min bg-white shadow-xl min-h-[800px] w-[1200px] m-5 gap-2" encType="multipart/form-data"
       >
         <div className="p-2 text-2xl 2xl:text-4xl font-bold flex justify-center items-center h-24 text-gray-900">
           Update your event details
@@ -117,7 +130,7 @@ export default function UpdateForm() {
 
         <div className="grid grid-cols-2 gap-4 items-start px-4">
           <SmallInput label="Type" placeholder="Online/Offline/Hybrid" value={formData.type} onChange={handleChange} name="type" />
-          <SmallInput type="file" label="Banner" placeholder="Add Image Url" value={formData.banner} onChange={handleChange} name="banner" />
+          <input type="file" accept="image/*" name="image" onChange={handleFileChange} />
         </div>
 
         <CalendarInput

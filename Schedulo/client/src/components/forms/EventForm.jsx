@@ -14,12 +14,12 @@ export default function EventForm() {
   const [host, setHost] = useState(null);
   const [cohosts, setCohosts] = useState([]);
   const [enums, setEnums] = useState([]);
+  const [bannerFile, setBannerFile] = useState(null);
 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     type: '',
-    banner: '',
     date: '',
     time: '12:00',
     venue: '',
@@ -32,18 +32,30 @@ export default function EventForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    setBannerFile(e.target.files[0]);
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const payload = {
-        ...formData,
-        host: host?._id || null,
-        cohosts: cohosts.map(user => user._id),
-        enums: enums // ✅ array of tags added here
-      };
 
-      const response = await axios.post('http://localhost:3000/events', payload);
-      console.log('Data Stored in Backend Successfully:', response.data);
+    const payload = new FormData();
+    payload.append('title', formData.title);
+    payload.append('description', formData.description);
+    payload.append('type', formData.type);
+    payload.append('venue', formData.venue);
+    payload.append('date', formData.date);
+    payload.append('time', formData.time);
+    payload.append('host', host?._id || '');
+    payload.append('cohosts', JSON.stringify(cohosts.map(user => user._id)));
+    payload.append('enums', JSON.stringify(enums));
+    console.log('Banner file selected:', bannerFile);
+    if (bannerFile) payload.append('image', bannerFile);
+
+    try {
+      const response = await axios.post('http://localhost:3000/events', payload, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       toast.success("Success: Data stored successfully");
       navigate('/');
     } catch (err) {
@@ -53,10 +65,7 @@ export default function EventForm() {
   }
 
   const handleDateSelect = (date) => {
-    setFormData(prev => ({
-      ...prev,
-      date: date ? date.toLocaleDateString('en-CA') : ''
-    }));
+    setFormData(prev => ({ ...prev, date: date ? date.toLocaleDateString('en-CA') : '' }));
   };
 
   const handleTimeChange = (e) => {
@@ -65,10 +74,8 @@ export default function EventForm() {
 
   return (
     <div className="flex-1 flex justify-center items-center bg-gray-100">
-      <form
-        className="grid grid-cols-1 auto-rows-min bg-white shadow-xl min-h-[800px] w-[1200px] m-5 gap-2"
-        onSubmit={handleSubmit}  encType="multipart/form-data"
-      >
+      <form onSubmit={handleSubmit} encType="multipart/form-data"
+        className="grid grid-cols-1 auto-rows-min bg-white shadow-xl min-h-[800px] w-[1200px] m-5 gap-2">
         <div className="p-2 text-4xl font-bold flex justify-center items-center h-24 text-gray-900">
           Create an Event
         </div>
@@ -76,19 +83,12 @@ export default function EventForm() {
         <LargeInput label="Title" placeholder="Ex - Blockchain Community Seminar" value={formData.title} onChange={handleChange} name="title" />
         <DescriptionArea label="Description" placeholder="Event Description" value={formData.description} onChange={handleChange} name="description" />
 
-        <div className="grid grid-cols-2 h-24 justify-evenly items-center">
+        <div className="grid grid-cols-2 h-24 justify-evenly items-center px-4">
           <SmallInput label="Type" placeholder="Online/Offline/Hybrid" value={formData.type} onChange={handleChange} name="type" />
-          <SmallInput type='file' label="Banner" placeholder="Add Image Url" value={formData.banner} onChange={handleChange} name="banner" />
+          <input type="file" accept="image/*" name="image" onChange={handleFileChange} />
         </div>
 
-        <CalendarInput
-          date={formData.date}
-          time={formData.time}
-          onDateChange={handleDateSelect}
-          onTimeChange={handleTimeChange}
-          Datename="date"
-          Timename="time"
-        />
+        <CalendarInput date={formData.date} time={formData.time} onDateChange={handleDateSelect} onTimeChange={handleTimeChange} />
 
         <LargeInput label="Venue" placeholder="Venue / Location" value={formData.venue} onChange={handleChange} name="venue" />
 

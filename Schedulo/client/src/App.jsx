@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {ToastContainer} from 'react-toastify'
 import Homepage from './Pages/homepage';
 import AddEvent from './Pages/addEvent';
 import SingleEvent from './Pages/SingleEvent'
 import UpdateEvent from './Pages/UpdateEvent';
-import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import SignupForm from './Pages/SignupForm';

@@ -39,7 +39,7 @@ export default function Profile() {
       <div className="min-h-52 rounded-r-2xl flex justify-center items-center gap-5">
         <div className="bg-green-300 h-28 w-28 rounded-full flex justify-center items-center overflow-hidden">
           <img
-            src={profile}
+            src={details.profilepic}
             alt="Profile"
             className="object-cover"
           />

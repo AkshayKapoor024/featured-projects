@@ -4,8 +4,13 @@ import { toast } from 'react-toastify';
 import LargeInput from '../forms/LargeInputs';
 import SmallInput from '../forms/SmallInput';
 import { useNavigate } from 'react-router-dom';
-export default function UserForm({focus,setFocus}) {
+export default function UserForm({ focus, setFocus }) {
   const navigate = useNavigate();
+  const [profilePicFile, setProfilePicFile] = useState(null);
+  function handleFileChange(e) {
+    setProfilePicFile(e.target.files[0]);
+  }
+
 
   const [formData, setFormData] = useState({
     username: '',
@@ -28,8 +33,10 @@ export default function UserForm({focus,setFocus}) {
         const res = await axios.get('http://localhost:3000/userDetails');
         console.log(res)
         const data = res.data
+        console.log(data)
         setFormData(prev => ({
           ...prev,
+          _id: data._id,
           ...data
         }));
       } catch (error) {
@@ -38,17 +45,35 @@ export default function UserForm({focus,setFocus}) {
     }
     getUserInfo();
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
+  function handleFileChange(e) {
+    setProfilePicFile(e.target.files[0]);
+  }
+  function handleChange(e) {
+  const { name, value } = e.target;
+  setFormData(prev => ({
+    ...prev,
+    [name]: value
+  }));
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formDataToSend = new FormData();
+
     console.log(formData)
     try {
-      let response = await axios.post('http://localhost:3000/userDashboard/profile/saveDetails', formData);
+      if (!formData._id) {
+        toast.error('Missing user ID — unable to update profile');
+        return;
+      }
+
+      Object.entries(formData).forEach(([key, val]) => {
+        if (key !== 'profilepic') formDataToSend.append(key, val);
+      });
+      if (profilePicFile) formDataToSend.append('image', profilePicFile);
+
+      let response = await axios.post('http://localhost:3000/userDashboard/profile/saveDetails', formDataToSend, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       console.log(response.data)
       setFocus('dashboard')
       toast.success('Profile updated successfully!');
@@ -62,7 +87,7 @@ export default function UserForm({focus,setFocus}) {
     <div className="flex-1 flex justify-center items-center bg-gray-100 rounded-r-2xl">
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-r-2xl shadow-xl 2xl:max-w-[950px] w-full max-w-[90%] 2xl:h-[800px] h-[800px] overflow-y-scroll grid grid-cols-1 auto-rows-min gap-y-4 px-6 py-4"  encType="multipart/form-data"
+        className="bg-white rounded-r-2xl shadow-xl 2xl:max-w-[950px] w-full max-w-[90%] 2xl:h-[800px] h-[800px] overflow-y-scroll grid grid-cols-1 auto-rows-min gap-y-4 px-6 py-4" encType="multipart/form-data"
 
       >
         <div className="text-2xl 2xl:text-4xl font-bold flex justify-center items-center h-24 text-gray-900">
@@ -159,14 +184,7 @@ export default function UserForm({focus,setFocus}) {
         />
 
         {/* Profile Picture */}
-        <LargeInput
-        type='file'
-          label="Profile Picture URL"
-          placeholder="Paste image link"
-          value={formData.profilepic}
-          onChange={handleChange}
-          name="profilepic"
-        />
+        <input type="file" accept="image/*" name="image" onChange={handleFileChange} className='text-gray-900 ring-1 ring-blue-300' />
 
         {/* Bio */}
         <LargeInput

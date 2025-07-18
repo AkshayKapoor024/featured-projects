@@ -1,10 +1,10 @@
 const joi = require('joi')
 module.exports = new joi.object({
      status:joi.string().required(),
-        usernname:joi.string().required(),
+        username:joi.string().required(),
         email:joi.string().required(),
-        userid:joi.string().required(),
-        eventid:joi.string().required(),
+        userid:joi.string().optional(),
+        eventid:joi.string().optional(),
         timestamp:joi.date().optional(),
         checkedIn:joi.boolean().optional(),
         feedback:joi.string().optional(),

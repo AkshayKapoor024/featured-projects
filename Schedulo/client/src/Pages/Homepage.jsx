@@ -1,51 +1,66 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import Navbar from '../components/Navbar'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/card/Card';
 import { toast } from 'react-toastify';
-
+import { motion } from 'framer-motion';
 
 function Homepage() {
-  //State variable (Array of events )
-  const [events, setEvents] = useState([])
-  const fetchEvents = async ()=>{
-    await axios.get('http://localhost:3000/events').then((res)=>{
-      toast.success("Success : Events fetched successfully")
-      setEvents(res.data)
-    }).catch((err)=>{
-       const message =
-    err.response?.data || "Something went wrong. Please try again.";
+  const [events, setEvents] = useState([]);
 
-  toast.error(`Error: ${message}`);
-    })
-  }
-  //Explicitly creating a session id for the frontend
+  const fetchEvents = async () => {
+    await axios.get('http://localhost:3000/events')
+      .then((res) => {
+        toast.success("Success : Events fetched successfully");
+        setEvents(res.data);
+      })
+      .catch((err) => {
+        const message = err.response?.data || "Something went wrong. Please try again.";
+        toast.error(`Error: ${message}`);
+      });
+  };
+
   useEffect(() => {
     axios.get('http://localhost:3000/session-check')
-    .then(res => console.log('Session set'))
-    .catch(err => console.log('Error:', err));
+      .then(res => console.log('Session set'))
+      .catch(err => console.log('Error:', err));
   }, []);
-  //Calls backend to fetch events at every reload or navigation
-  
-  useEffect(()=>{fetchEvents()},[])
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <div className='flex-1 bg-gray-100' style={{ fontFamily: 'Montserrat,sans-serif' }}>
-          <h1 className='h-14 p-2 font-bold text-xl text-gray-900 shadow-md flex justify-start items-center 2xl:text-4xl'>Don’t Miss What’s Happening Next!</h1>
-          <div className=' flex justify-center items-center gap-x-10 flex-wrap'>
-            {
-            events.map((object,index)=>{
-              return <Card object={object} key={object._id}/>
-            })
-            }
-          </div>
+      <Navbar />
+      <div className='flex-1 bg-gray-100' style={{ fontFamily: 'Montserrat,sans-serif' }}>
+        <motion.h1
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className='h-14 p-2 font-bold text-xl text-gray-900 shadow-md flex justify-start items-center 2xl:text-4xl'
+        >
+          Don’t Miss What’s Happening Next!
+        </motion.h1>
+
+        <div className='flex justify-center items-center gap-x-10 flex-wrap'>
+          {events.map((object, index) => (
+            <motion.div
+              key={object._id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1, type: 'spring' }}
+            >
+              <Card object={object} />
+            </motion.div>
+          ))}
         </div>
-        <Footer />
+      </div>
+      <Footer />
     </div>
   );
-
 }
 
-export default Homepage
+export default Homepage;
