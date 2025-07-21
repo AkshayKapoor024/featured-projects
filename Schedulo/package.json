@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@google-cloud/vertexai": "^1.10.0",
+    "@google/genai": "^1.10.0",
     "@google/generative-ai": "^0.24.1",
     "agenda": "^5.0.0",
     "cloudinary": "^1.41.3",

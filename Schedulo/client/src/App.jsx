@@ -11,6 +11,7 @@ import LoginForm from './Pages/LoginForm'
 import AttendeeList from './Pages/AttendeeList';
 import User from './Pages/User';
 import UserFeedback from './Pages/UserFeedbacks';
+import SearchPage from './Pages/SearchPage';
 //Allowing requests to contain session related data via connect.sid to be sent to the backend 
 axios.defaults.withCredentials = true;
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route path='/events/:id/attendees' element={<AttendeeList/>}></Route>
       <Route path="/userDashboard" element={<User/>}/>
       <Route path='/myFeedbacks' element={<UserFeedback/>}></Route>
+      <Route path ='/api/searchResults' element={<SearchPage/>}></Route>
     </Routes>
     </BrowserRouter>
   );

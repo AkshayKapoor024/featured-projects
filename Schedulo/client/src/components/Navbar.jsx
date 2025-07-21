@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [input , SetInput] = useState('')
   const navigate = useNavigate();
   const [user,setUser] = useState({})
   useEffect(() => {
@@ -34,9 +35,16 @@ export default function Navbar() {
       console.error('Logout failed:', err);
     }
   };
-
+  const handleInputChange = (e)=>{
+    const field = e.target.name
+    const value = e.target.value
+    SetInput(value)
+  }
+  const handleInput = async ()=>{
+      navigate(`/api/searchResults?q=${input}`,{state:input})
+  }
   return (
-    <div className="relative">
+    <div className="relative z-30">
       <div
         className="h-20 flex gap-x-5 shadow-md bg-indigo-400 text-gray-100 px-4"
         style={{ fontFamily: 'Montserrat, sans-serif' }}
@@ -56,8 +64,8 @@ export default function Navbar() {
             Your feedback
           </Link>
           <div className='ml-10 bg-gray-100 w-[50vw] h-[6vh] rounded-2xl flex '>
-            <input className='text-gray-400 w-[90%] rounded-l-2xl flex items-center p-5 text-base text-left 'placeholder='Search something here (Events , specific locations , users , fields etc. and many more)'/>
-            <div className='bg-indigo-600 w-[10%] rounded-r-2xl flex justify-center items-center hover:cursor-pointer btn h-full'><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1"/></div>
+            <input className='text-gray-400 w-[90%] rounded-l-2xl flex items-center p-5 text-base text-left 'placeholder='Search something here (Events , specific locations , users , fields etc. and many more)' value={input} onChange={handleInputChange}/>
+            <div className='bg-indigo-600 w-[10%] rounded-r-2xl flex justify-center items-center hover:cursor-pointer btn h-full' onClick={handleInput}><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1"/></div>
           </div>
         </div>
 
