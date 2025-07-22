@@ -31,7 +31,7 @@ export default function Signup() {
       style={{ fontFamily: "Montserrat,sans-serif" }}
     >
       <div className="m-4  2xl:w-[900px] 2xl:h-24 flex justify-center items-center" >
-        <a href="http://localhost:3000/auth/google" className="">
+        <a href="https://go-schedulo.vercel.app/auth/google" className="">
           <button className="btn btn-outline  md:w-[650px] md:text-2xl flex items-center justify-center gap-4 h-16 2xl:w-[700px] px-6 2xl:text-3xl font-bold text-gray-600 hover:text-gray-100">
             <span className="inline-block w-16 h-[50px]">
               {/* Google SVG icon */}
