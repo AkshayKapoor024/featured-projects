@@ -67,7 +67,7 @@ app.use(session({
   cookie: {
     secure: false, // set to true only if using HTTPS
     httpOnly: true,
-    sameSite: 'lax'
+    sameSite: 'none'
   }
 }))
 //Passport requirements
