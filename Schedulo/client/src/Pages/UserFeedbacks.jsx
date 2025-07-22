@@ -10,7 +10,7 @@ export default function UserFeedback(){
     useEffect(()=>{
         const checkAuth = async()=>{
 
-            const response =await axios.get('http://localhost:3000/isAuthenticated')
+            const response =await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             if(!response.data.email){
                 toast.error('Error:Signup to Acess this feature!')
                 navigate('/signup')
