@@ -8,7 +8,7 @@ export default function ReviewList() {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
         const findUser = async () => {
-            const response = await axios.get('http://localhost:3000/isAuthenticated')
+            const response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             setUser(response.data)
         }
         findUser()
@@ -18,7 +18,7 @@ export default function ReviewList() {
         if (user.email) {
 
             const findReviews = async () => {
-                const response = await axios.get(`http://localhost:3000/users/${user._id}/reviews/YourReviews`)
+                const response = await axios.get(`https://schedulo-server-pfcu.onrender.com/users/${user._id}/reviews/YourReviews`)
                 console.log(response)
                 setReviews(response.data);
             }
