@@ -30,7 +30,7 @@ export default function UserForm({ focus, setFocus }) {
   useEffect(() => {
     async function getUserInfo() {
       try {
-        const res = await axios.get('http://localhost:3000/userDetails');
+        const res = await axios.get('https://schedulo-server-pfcu.onrender.com/userDetails');
         console.log(res)
         const data = res.data
         console.log(data)
