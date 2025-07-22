@@ -12,8 +12,8 @@ export default function RsvpList({ list, setList }) {
     const handleRemove = async (userid,eventid) => {
         console.log(userid,eventid)
         try {
-            await axios.delete(`http://localhost:3000/events/${eventid}/rsvp/${userid}`);
-            const newList = await axios.get(`http://localhost:3000/userRsvp`);
+            await axios.delete(`https://schedulo-server-pfcu.onrender.com/events/${eventid}/rsvp/${userid}`);
+            const newList = await axios.get(`https://schedulo-server-pfcu.onrender.com/userRsvp`);
             setList(newList.data);
             toast.success("RSVP removed successfully!");
         } catch (error) {
