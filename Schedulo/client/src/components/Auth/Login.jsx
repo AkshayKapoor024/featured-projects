@@ -16,7 +16,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/login", login);
+      await axios.post("https://schedulo-server-pfcu.onrender.com/login", login);
       toast.success("User Login successful!!");
       navigate("/");
     } catch (err) {
