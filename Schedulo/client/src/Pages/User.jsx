@@ -18,7 +18,7 @@ export default function User() {
   const handleLogout = () => {
     const trylogout = async () => {
       try {
-        await axios.get('http://localhost:3000/logout');
+        await axios.get('https://schedulo-server-pfcu.onrender.com/logout');
         navigate('/');
         toast.success('User Logged out Successfully!');
       } catch (error) {
@@ -31,7 +31,7 @@ export default function User() {
   useEffect(() => {
     const verifyProfile = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/isAuthenticated');
+        const res = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
         const data = res.data;
 
         const requiredFields = [
