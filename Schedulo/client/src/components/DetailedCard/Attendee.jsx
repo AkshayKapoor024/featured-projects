@@ -12,7 +12,7 @@ export default function Attendee({ title }) {
     useEffect(() => {
         const fillList = async () => {
             try {
-                let response = await axios.get(`http://localhost:3000/events/${id}/attendees`)
+                let response = await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${id}/attendees`)
                 setList(response.data)
             } catch (error) {
                 toast.error(`Error: ${error}`)
