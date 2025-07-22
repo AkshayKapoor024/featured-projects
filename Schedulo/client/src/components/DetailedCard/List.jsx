@@ -11,8 +11,8 @@ export default function List({ list, id, setList }) {
     console.log(list)
     const handleRemove = async (userid) => {
         try {
-            await axios.delete(`http://localhost:3000/events/${id}/rsvp/${userid._id}`);
-            const newList = await axios.get(`http://localhost:3000/events/${id}/attendees`);
+            await axios.delete(`https://schedulo-server-pfcu.onrender.com/events/${id}/rsvp/${userid._id}`);
+            const newList = await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${id}/attendees`);
             setList(newList.data);
             toast.success("RSVP removed successfully!");
         } catch (error) {
