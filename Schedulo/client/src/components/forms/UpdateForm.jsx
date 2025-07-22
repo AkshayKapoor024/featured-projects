@@ -32,9 +32,9 @@ export default function UpdateForm() {
   useEffect(() => {
     async function getOldData() {
       try {
-        const res = await axios.get(`http://localhost:3000/events/${id}`);
+        const res = await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${id}`);
         const event = res.data;
-        const userRes = await axios.get('http://localhost:3000/isAuthenticated');
+        const userRes = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
         const userId = userRes.data._id;
 
         if (event.owner !== userId) {
