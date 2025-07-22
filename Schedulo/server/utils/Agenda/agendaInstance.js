@@ -1,7 +1,7 @@
 const { Agenda } = require('agenda');
 
 const agenda = new Agenda({
-  db: { address: process.env.MONGO_URI, collection: 'agendaJobs' },
+  db: { address: process.env.ATLASURL, collection: 'agendaJobs' },
   processEvery: '30 seconds',
 });
 
