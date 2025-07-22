@@ -25,7 +25,7 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 // Google OAuth callback
 router.get('/auth/google/callback',
   passport.authenticate('google', {
-    failureRedirect: 'http://localhost:5173/login'
+    failureRedirect: 'https://go-schedulo.vercel.app/login'
   }),
 googleAuthCallbackFunction
 );
