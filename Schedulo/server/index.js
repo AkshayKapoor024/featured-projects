@@ -38,7 +38,7 @@ console.log('Cloud name:', process.env.CLOUD_NAME);
 //MongoDb Connection
 main()
 //This allows backend to get session related information regarding sessions
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: 'https://go-schedulo.vercel.app', credentials: true }));
 
 
 const store  = MongoStore.create({
