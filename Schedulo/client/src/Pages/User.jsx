@@ -31,7 +31,9 @@ export default function User() {
   useEffect(() => {
     const verifyProfile = async () => {
       try {
-        const res = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
+        const res = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+});
         const data = res.data;
 
         const requiredFields = [
