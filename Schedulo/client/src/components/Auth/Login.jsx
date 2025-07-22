@@ -33,7 +33,7 @@ export default function Login() {
       style={{ fontFamily: "Montserrat,sans-serif" }}
     >
       <div className=" 2xl:w-[900px] 2xl:h-24 flex justify-center items-center m-2" >
-        <Link to="/auth/google" className="">
+        <a href="https://schedulo-server-pfcu.onrender.com/auth/google" className="">
           <button className="text-xl md:w-[650px] btn btn-outline flex items-center justify-center gap-4 h-16 2xl:w-[700px] px-6 2xl:text-3xl font-bold text-gray-600 hover:text-gray-100">
             <span className=" inline-block w-16 h-[50px]">
               {/* Google SVG icon */}
@@ -67,7 +67,7 @@ export default function Login() {
             </span>
             Continue with Google
           </button>
-        </Link>
+        </a>
       </div>
       <form
         className="m-5 xl:m-5 lg:m-2 bg-white min-w-[325px] h-[400px] md:w-[700px] lg:w-[900px] lg:h-[600px] text-gray-900 2xl:w-[900px] 2xl:h-[500px] shadow-2xl flex flex-col "
