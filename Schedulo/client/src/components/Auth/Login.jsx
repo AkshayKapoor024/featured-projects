@@ -16,7 +16,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://schedulo-server-pfcu.onrender.com/login", login);
+      await axios.post("https://schedulo-server-pfcu.onrender.com/login", login,{
+  withCredentials: true,
+});
       toast.success("User Login successful!!");
       navigate("/");
     } catch (err) {
@@ -31,7 +33,7 @@ export default function Login() {
       style={{ fontFamily: "Montserrat,sans-serif" }}
     >
       <div className=" 2xl:w-[900px] 2xl:h-24 flex justify-center items-center m-2" >
-        <a href="https://go-schedulo.vercel.app/auth/google" className="">
+        <a href="/auth/google" className="">
           <button className="text-xl md:w-[650px] btn btn-outline flex items-center justify-center gap-4 h-16 2xl:w-[700px] px-6 2xl:text-3xl font-bold text-gray-600 hover:text-gray-100">
             <span className=" inline-block w-16 h-[50px]">
               {/* Google SVG icon */}
@@ -127,7 +129,7 @@ export default function Login() {
             <button type="submit" className="mt-4 w-[300px] md:w-96 md:text-lg lg:text-2xl lg:w-[500px] lg:h-20 btn btn-primary 2xl:w-[600px] ">
               Submit
             </button>
-            <h1 className="2xl:text-xl m-2">Don't have an account ? <a href="https://schedulo-server-pfcu.onrender.com/signup" className="text-blue-500 underline">Sign-Up</a></h1>
+            <h1 className="2xl:text-xl m-2">Don't have an account ? <a href="/signup" className="text-blue-500 underline">Sign-Up</a></h1>
           </div>
         </div>
       </form>
