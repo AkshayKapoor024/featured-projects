@@ -13,7 +13,7 @@ export default function MyRsvpList({ title }) {
  useEffect(() => {
     const fillList = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/userRsvp`);
+        const response = await axios.get(`https://schedulo-server-pfcu.onrender.com/userRsvp`);
         console.log(response.data)
         setList(response.data);
       } catch (error) {
