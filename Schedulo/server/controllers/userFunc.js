@@ -8,11 +8,11 @@ module.exports.signupUser = async (req, res) => {
 
         let { username, email, password } = req.body
         let user = new User({ email, username })
-        await User.register(user, password)
+       let registeredUser= await User.register(user, password)
         //Sending the email to user
         await Layout(user.email, "Welcome to Schedulo!", user.username, "We're thrilled to have you onboard. Start browsing upcoming events and RSVP today.")
 
-        req.login(user, (err) => {
+        req.login(registeredUser, (err) => {
             if (err) {
                 next(err)
             } else {
