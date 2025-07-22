@@ -34,7 +34,9 @@ export default function UpdateForm() {
       try {
         const res = await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${id}`);
         const event = res.data;
-        const userRes = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
+        const userRes = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+});
         const userId = userRes.data._id;
 
         if (event.owner !== userId) {
