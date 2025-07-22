@@ -14,7 +14,7 @@ export default function SingleEvent() {
 
     async function findEvent() {
       try {
-        const res = await axios.get(`http://localhost:3000/events/${id}`)
+        const res = await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${id}`)
         console.log(`Single event fetched successfully`)
         setEventData(res.data)
       } catch (err) { console.log(err.message) }
@@ -26,7 +26,7 @@ export default function SingleEvent() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/isAuthenticated`);
+        const res = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`);
         if (!res.data?.email) {
           toast.error('Error: Signup to access this feature');
           navigate('/signup');
