@@ -10,7 +10,7 @@ function Homepage() {
   const [events, setEvents] = useState([]);
 
   const fetchEvents = async () => {
-    await axios.get('http://localhost:3000/events')
+    await axios.get('https://schedulo-server-pfcu.onrender.com/events')
       .then((res) => {
         toast.success("Success : Events fetched successfully");
         setEvents(res.data);
@@ -22,7 +22,7 @@ function Homepage() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/session-check')
+    axios.get('https://schedulo-server-pfcu.onrender.com/session-check')
       .then(res => console.log('Session set'))
       .catch(err => console.log('Error:', err));
   }, []);
