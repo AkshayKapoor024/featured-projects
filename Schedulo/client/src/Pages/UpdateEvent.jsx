@@ -10,7 +10,7 @@ export default function UpdateEvent() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/isAuthenticated`);
+        const res = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`);
         if (!res.data?.email) {
           toast.error('Error: Signup to access this feature');
           navigate('/signup');
