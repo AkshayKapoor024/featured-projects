@@ -11,7 +11,7 @@ export default function Navbar() {
   const [user,setUser] = useState({})
   useEffect(() => {
     axios
-      .get('http://localhost:3000/isAuthenticated', { withCredentials: true })
+      .get('https://schedulo-server-pfcu.onrender.com/isAuthenticated', { withCredentials: true })
       .then((res) => {
         if (res.data && res.data.email) {
           setIsAuthenticated(true);
@@ -26,7 +26,7 @@ export default function Navbar() {
   }, []);
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:3000/logout', { withCredentials: true });
+      await axios.get('https://schedulo-server-pfcu.onrender.com/logout', { withCredentials: true });
       setIsAuthenticated(false);
       toast.success('User logged out!!');
       navigate('/temp-route');
