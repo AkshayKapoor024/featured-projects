@@ -149,7 +149,7 @@ export default function Signup() {
             <button type="submit" className="btn btn-primary w-[250px] bg-indigo-600 md:w-[500px] lg:w-[600px] lg:h-16 lg:text-3xl 2xl:w-[600px]">
               Submit
             </button>
-            <h1 className="text-base 2xl:text-xl m-2">Already have an account ? <a href="/login" className="text-blue-500 underline">Login</a></h1>
+            <h1 className="text-base 2xl:text-xl m-2">Already have an account ? <a href="https://schedulo-server-pfcu.onrender.com/login" className="text-blue-500 underline">Login</a></h1>
           </div>
         </div>
       </form>
