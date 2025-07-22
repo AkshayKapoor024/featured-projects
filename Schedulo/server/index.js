@@ -148,7 +148,10 @@ app.use('/events/:eventid/rsvp/:userid', rsvpRoute)
 
 //Explicitly called session checking router handler to help create server to make client create a session id
 app.get('/session-check', (req, res) => {
-  req.session.greeting = 'Welcome, Akshay!';
+  req.session.greeting = 'Welcome';
+  console.log('Session ID:', req.sessionID);
+console.log('Session:', req.session);
+console.log('User:', req.user);
   res.send('Session initialized');
 });
 
