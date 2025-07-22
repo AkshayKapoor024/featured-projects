@@ -15,7 +15,9 @@ export default function DetailedCard({ obj, setEventData }) {
     console.log(obj.date + " " + obj.time)
     const handleUpdate = (e) => {
         const checkAuth = async () => {
-            const response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
+            const response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+})
             let userid = response.data._id
             let ownerid = obj.owner.toString()
             if (userid === ownerid) {
@@ -34,7 +36,9 @@ export default function DetailedCard({ obj, setEventData }) {
     const [user, setUser] = useState({ email: "", username: "", _id: "" })
     const handleDelete = async (e) => {
         const checkAuth = async () => {
-            const resp = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
+            const resp = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+})
             let userid = resp.data._id
             let ownerid = obj.owner.toString()
             if (userid === ownerid) {
@@ -61,7 +65,9 @@ export default function DetailedCard({ obj, setEventData }) {
     const handleRegister = (e) => {
         let userdetails = undefined
         const getdata = async () => {
-            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
+            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+})
             setUser((prev) => ({ email: userdetails.data.email, username: userdetails.data.username, _id: userdetails.data._id }))
         }
         getdata()
@@ -69,7 +75,9 @@ export default function DetailedCard({ obj, setEventData }) {
     }
     const handleAttendee = (e) => {
         const checkAuth = async () => {
-            const resp = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
+            const resp = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+})
             let userid = resp.data._id
             let ownerid = obj.owner.toString()
             if (userid === ownerid) {
@@ -84,7 +92,9 @@ export default function DetailedCard({ obj, setEventData }) {
     const withdrawRegisteration = async (e) => {
         try {
             let userdetails = undefined
-            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
+            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+})
             setUser((prev) => ({ email: userdetails.data.email, username: userdetails.data.username, _id: userdetails.data._id }))
             await axios.delete(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}/rsvp/${userdetails.data._id}`)
             toast.error(`Withdraw participation successful`)
@@ -96,7 +106,9 @@ export default function DetailedCard({ obj, setEventData }) {
     const handleDeleteReview = (reviewid, authorid) => {
         try {
             const deleteReview = async () => {
-                let ourUser = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`)
+                let ourUser = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`{
+  withCredentials: true,
+})
                 console.log(ourUser)
                 if (ourUser.data._id.toString() === authorid.toString()) {
                     await axios.delete(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}/deleteReview/${reviewid}`)
@@ -116,7 +128,9 @@ export default function DetailedCard({ obj, setEventData }) {
     useEffect(() => {
   const findRegistered = async () => {
     try {
-      const { data: userdetails } = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
+      const { data: userdetails } = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+});
 
       setUser({
         email: userdetails.email,
