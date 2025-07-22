@@ -15,7 +15,7 @@ export default function DetailedCard({ obj, setEventData }) {
     console.log(obj.date + " " + obj.time)
     const handleUpdate = (e) => {
         const checkAuth = async () => {
-            const response = await axios.get('http://localhost:3000/isAuthenticated')
+            const response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             let userid = response.data._id
             let ownerid = obj.owner.toString()
             if (userid === ownerid) {
@@ -34,11 +34,11 @@ export default function DetailedCard({ obj, setEventData }) {
     const [user, setUser] = useState({ email: "", username: "", _id: "" })
     const handleDelete = async (e) => {
         const checkAuth = async () => {
-            const resp = await axios.get('http://localhost:3000/isAuthenticated')
+            const resp = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             let userid = resp.data._id
             let ownerid = obj.owner.toString()
             if (userid === ownerid) {
-                const path = `http://localhost:3000/events/${obj._id}`
+                const path = `https://schedulo-server-pfcu.onrender.com/events/${obj._id}`
                 try {
                     const response = await axios.delete(path)
                     console.log('Event deleted successfully!!')
@@ -61,7 +61,7 @@ export default function DetailedCard({ obj, setEventData }) {
     const handleRegister = (e) => {
         let userdetails = undefined
         const getdata = async () => {
-            userdetails = await axios.get('http://localhost:3000/isAuthenticated')
+            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             setUser((prev) => ({ email: userdetails.data.email, username: userdetails.data.username, _id: userdetails.data._id }))
         }
         getdata()
@@ -69,7 +69,7 @@ export default function DetailedCard({ obj, setEventData }) {
     }
     const handleAttendee = (e) => {
         const checkAuth = async () => {
-            const resp = await axios.get('http://localhost:3000/isAuthenticated')
+            const resp = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             let userid = resp.data._id
             let ownerid = obj.owner.toString()
             if (userid === ownerid) {
@@ -84,23 +84,23 @@ export default function DetailedCard({ obj, setEventData }) {
     const withdrawRegisteration = async (e) => {
         try {
             let userdetails = undefined
-            userdetails = await axios.get('http://localhost:3000/isAuthenticated')
+            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
             setUser((prev) => ({ email: userdetails.data.email, username: userdetails.data.username, _id: userdetails.data._id }))
-            await axios.delete(`http://localhost:3000/events/${obj._id}/rsvp/${userdetails.data._id}`)
+            await axios.delete(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}/rsvp/${userdetails.data._id}`)
             toast.error(`Withdraw participation successful`)
             setRegistered(false)
         } catch (error) {
-            toast.error(`Erro: ${error.message}`)
+            toast.error(`Error: ${error.message}`)
         }
     }
     const handleDeleteReview = (reviewid, authorid) => {
         try {
             const deleteReview = async () => {
-                let ourUser = await axios.get(`http://localhost:3000/isAuthenticated`)
+                let ourUser = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`)
                 console.log(ourUser)
                 if (ourUser.data._id.toString() === authorid.toString()) {
-                    await axios.delete(`http://localhost:3000/events/${obj._id}/deleteReview/${reviewid}`)
-                    let response = await axios.get(`http://localhost:3000/events/${obj._id}`)
+                    await axios.delete(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}/deleteReview/${reviewid}`)
+                    let response = await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}`)
                     setEventData(response.data)
                     toast.success(`review Deleted successfully`)
                 } else {
@@ -116,7 +116,7 @@ export default function DetailedCard({ obj, setEventData }) {
     useEffect(() => {
   const findRegistered = async () => {
     try {
-      const { data: userdetails } = await axios.get('http://localhost:3000/isAuthenticated');
+      const { data: userdetails } = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
 
       setUser({
         email: userdetails.email,
