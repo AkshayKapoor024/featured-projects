@@ -23,7 +23,7 @@ export default function SearchPage() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/searchResults?inputQuery=${input}`
+          `https://schedulo-server-pfcu.onrender.com/api/searchResults?inputQuery=${input}`
         );
 
         if (response.data && Array.isArray(response.data) && response.data.length > 0) {
