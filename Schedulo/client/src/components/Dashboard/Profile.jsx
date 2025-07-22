@@ -25,7 +25,9 @@ export default function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated');
+        let response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+});
         setDetails(response.data);
       } catch (err) {
         console.error('Error fetching user data:', err);
