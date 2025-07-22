@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify'
 import Homepage from './Pages/Homepage';
-import AddEvent from './Pages/addEvent';
+import AddEvent from './Pages/AddEvent';
 import SingleEvent from './Pages/SingleEvent'
 import UpdateEvent from './Pages/UpdateEvent';
 import 'react-toastify/dist/ReactToastify.css';
