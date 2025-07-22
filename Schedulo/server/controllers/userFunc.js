@@ -52,7 +52,7 @@ module.exports.googleAuthCallbackFunction = async (req, res) => {
     );
 
     // Then redirect
-    res.redirect('http://localhost:5173/');
+    res.redirect('https://go-schedulo.vercel.app/');
 }
 
 module.exports.AuthenticationCheck = (req, res) => {
