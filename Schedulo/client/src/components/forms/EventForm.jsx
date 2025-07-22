@@ -53,7 +53,7 @@ export default function EventForm() {
     if (bannerFile) payload.append('image', bannerFile);
 
     try {
-      const response = await axios.post('http://localhost:3000/events', payload, {
+      const response = await axios.post('https://schedulo-server-pfcu.onrender.com/events', payload, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       toast.success("Success: Data stored successfully");
