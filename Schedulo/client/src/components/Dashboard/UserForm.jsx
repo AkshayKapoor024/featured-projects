@@ -71,7 +71,7 @@ export default function UserForm({ focus, setFocus }) {
       });
       if (profilePicFile) formDataToSend.append('image', profilePicFile);
 
-      let response = await axios.post('http://localhost:3000/userDashboard/profile/saveDetails', formDataToSend, {
+      let response = await axios.post('https://schedulo-server-pfcu.onrender.com/userDashboard/profile/saveDetails', formDataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       console.log(response.data)
