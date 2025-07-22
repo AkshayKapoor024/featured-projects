@@ -16,7 +16,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/signup", signup);
+      await axios.post("https://schedulo-server-pfcu.onrender.com/signup", signup);
       toast.success("User Signup successful!!");
       navigate("/");
     } catch (err) {
