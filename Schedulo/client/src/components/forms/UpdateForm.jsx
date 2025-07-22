@@ -88,7 +88,7 @@ export default function UpdateForm() {
       if (bannerFile) payload.append('image', bannerFile);
 
 
-      await axios.put(`http://localhost:3000/events/${id}/updateDetails`, payload, {
+      await axios.put(`https://schedulo-server-pfcu.onrender.com/${id}/updateDetails`, payload, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
