@@ -8,7 +8,9 @@ export default function ReviewList() {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
         const findUser = async () => {
-            const response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated')
+            const response = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated',{
+  withCredentials: true,
+})
             setUser(response.data)
         }
         findUser()
