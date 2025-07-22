@@ -31,14 +31,14 @@ export default function Rating({ obj, setEventData }) {
                 return;
             }
 
-            let response = await axios.post(`http://localhost:3000/events/${obj._id}/newReview`, { comment, rating })
+            let response = await axios.post(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}/newReview`, { comment, rating })
             if (response.error) {
                 toast.error('Error posting the review')
                 setRating('1')
                 setComment(' ')
             } else {
                 toast.success('Review posted successfully')
-                let event =await axios.get(`http://localhost:3000/events/${obj._id}`)
+                let event =await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}`)
                 setEventData(event.data)
             }
             console.log('Review Submitted:', { rating, comment });
