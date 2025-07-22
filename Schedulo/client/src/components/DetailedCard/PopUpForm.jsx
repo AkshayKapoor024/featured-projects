@@ -32,7 +32,7 @@ export function PopUpForm({ statevar, user, handlestate, eventid , isRegistered 
   e.preventDefault();
 
   try {
-    const endpoint = `http://localhost:3000/events/${eventid}/rsvp/${user._id}`;
+    const endpoint = `https://schedulo-server-pfcu.onrender.com/events/${eventid}/rsvp/${user._id}`;
     console.log(`At submit button ${isRegistered}`)
     if (!isRegistered) {
         console.log(formData)
