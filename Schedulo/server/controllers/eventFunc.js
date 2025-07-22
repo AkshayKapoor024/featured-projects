@@ -5,6 +5,7 @@ const {Layout} = require('../utils/Email/Layout.js')
 const { cloudinary } = require('../cloudConfig.js');
 module.exports.getAllEvents = async (req, res) => {
     let currentEvents = await Event.find({})
+    console.log(currentEvents)
     res.send(currentEvents)
 }
 module.exports.postNewEvent = async (req, res) => {

@@ -21,6 +21,7 @@ const { GEMINI_API_FUNCTION } = require('./GeminiAPI')
 const Event = require('./models/event')
 const customError = require('./utils/customError')
 const wrapAsync = require('./utils/wrapAsync')
+const MongoStore = require('connect-mongo');
 //Used to parse json data coming from requests
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -29,20 +30,40 @@ startAgenda()
 // backend/index.js or server.js
 const cors = require('cors');
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/Schedulo');
+  await mongoose.connect(process.env.ATLASURL);
   console.log('Connected to mongodb!')
+  console.log('Using DB:', mongoose.connection.name);
 }
 console.log('Cloud name:', process.env.CLOUD_NAME);
 //MongoDb Connection
 main()
 //This allows backend to get session related information regarding sessions
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+
+
+const store  = MongoStore.create({
+    //using cloud db as mongourl
+     mongoUrl: process.env.ATLASURL,
+     //Crypto used for encryption of sensitive information
+     //Secret code for sessioning 
+      crypto: {
+    secret: process.env.SECRET
+  },
+  touchAfter:24*3600
+     })
+     //error handling in mongosession store
+store.on('error',()=>{
+    console.log(`ERROR IN MONGO SESSION STORE`)
+})
+
+
 //Applying sessioning in backend
-app.use(cookieParser("Secret-code"))
+app.use(cookieParser(process.env.SECRET))
 app.use(session({
-  secret: 'YemeraSecretHai',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
+  store: store,
   cookie: {
     secure: false, // set to true only if using HTTPS
     httpOnly: true,
@@ -60,7 +81,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, User.authenticate()))
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/callback"
+  callbackURL: process.env.CALLBACKURL
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     // Check if user already exists
