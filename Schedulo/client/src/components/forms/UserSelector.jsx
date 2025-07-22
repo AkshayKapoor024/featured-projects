@@ -13,7 +13,7 @@ export default function UserSelector({ type, max = 5, selectedUsers, setSelected
   // 🔍 Search user by email
   const handleSearch = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/users?email=${email}`);
+      const res = await axios.get(`https://schedulo-server-pfcu.onrender.com/users?email=${email}`);
       const user = Array.isArray(res.data) && res.data.length > 0 ? res.data[0] : null;
 
       if (user) {
