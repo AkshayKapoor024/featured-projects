@@ -112,7 +112,6 @@ export default function User() {
         {focus === 'edit' && <UserForm focus={focus} setFocus={setFocus}/>}
         {focus === 'rsvp' && <MyRsvp />}
       </motion.div>
-    </div>>
     </div>
   );
 }
