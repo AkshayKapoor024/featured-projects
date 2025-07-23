@@ -106,7 +106,7 @@ export default function DetailedCard({ obj, setEventData }) {
     const handleDeleteReview = (reviewid, authorid) => {
         try {
             const deleteReview = async () => {
-                let ourUser = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`{
+                let ourUser = await axios.get(`https://schedulo-server-pfcu.onrender.com/isAuthenticated`,{
   withCredentials: true,
 })
                 console.log(ourUser)
