@@ -22,7 +22,9 @@ function Homepage() {
   };
 
   useEffect(() => {
-  axios.get('https://schedulo-server-pfcu.onrender.com/session-check')
+  await axios.post('https://schedulo-server-pfcu.onrender.com/session-check', {
+  init: true
+}, { withCredentials: true })
     .then(() => {
       // Wait 50ms to allow browser to store cookie
       setTimeout(() => {
