@@ -13,7 +13,11 @@ import User from './Pages/User';
 import UserFeedback from './Pages/UserFeedbacks';
 import SearchPage from './Pages/SearchPage';
 //Allowing requests to contain session related data via connect.sid to be sent to the backend 
-axios.defaults.withCredentials = true;
+axios.interceptors.request.use(config => {
+  config.withCredentials = true;
+  return config;
+});
+
 function App() {
   return(
     <BrowserRouter>
