@@ -22,10 +22,19 @@ function Homepage() {
   };
 
   useEffect(() => {
-    axios.get('https://schedulo-server-pfcu.onrender.com/session-check')
-      .then(res => console.log('Session set'))
-      .catch(err => console.log('Error:', err));
-  }, []);
+  axios.get('https://schedulo-server-pfcu.onrender.com/session-check')
+    .then(() => {
+      // Wait 50ms to allow browser to store cookie
+      setTimeout(() => {
+        const hasCookie = document.cookie.includes('connect.sid');
+        if (hasCookie) {
+          console.log('Session cookie created successfully');
+        } else {
+          console.warn('Session created, but cookie not stored yet');
+        }
+      }, 50);
+    });
+}, []);
 
   useEffect(() => {
     fetchEvents();
