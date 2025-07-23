@@ -28,9 +28,9 @@ export default function RsvpList({ list, setList }) {
         "bg-indigo-100 opacity-0 scale-95 pointer-events-none max-h-0 overflow-hidden transition-all duration-500 ease-in-out transform origin-top flex flex-col justify-center";
 
     return (
-        <div className="m-2 w-auto 2xl:min-h-[600px]">
+          <div className="w-full">
             {list.map((element, index) => (
-                <div key={index} className="m-2">
+                <div key={index} className="m-2 h-[50vh]">
                     <div className="bg-indigo-50 w-full 2xl:h-16 flex rounded-xl shadow-md">
                         <button
                             className="h-full w-24 flex justify-center items-center"
@@ -44,16 +44,16 @@ export default function RsvpList({ list, setList }) {
                             )}
                         </button>
                         <div className="2xl:w-[1000px] rounded-xl flex p-2 justify-between">
-                            <div className="2xl:w-96 flex font-bold text-gray-600 justify-center items-center text-xl">
+                            <div className="2xl:w-96 flex font-bold lg:mx-2 text-gray-600 justify-center items-center text-sm md:text-base lg:text-lg xl:text-xl">
                                 Username - {element.username}
                             </div>
-                            <div className="2xl:w-96 flex font-bold text-gray-600 justify-center items-center text-xl">
+                            <div className="2xl:w-96 flex font-bold lg:mx-2 text-gray-600 justify-center items-center text-sm md:text-base lg:text-lg xl:text-xl">
                                 Registered At -{" "}
                                 {element.timestamp
                                     ? element.timestamp.slice(0, 10)
                                     : "Loading..."}
                             </div>
-                            <div className="2xl:w-96 flex font-bold text-gray-600 justify-center items-center text-xl">
+                            <div className=" flex font-bold lg:mx-2 text-gray-600 justify-center items-center text-sm md:text-base 2xl:text-left lg:text-lg  xl:text-base">
                                 Status - {element.status} 👌
                             </div>
                         </div>
