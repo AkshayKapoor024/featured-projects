@@ -66,11 +66,13 @@ app.use(session({
   saveUninitialized: false,
   store: store,
   cookie: {
-    secure: true, // set to true only if using HTTPS
+    secure: true, // 🔥 HTTPS required
     httpOnly: true,
-    sameSite: 'none'
+    sameSite: 'none',
+    maxAge: 24 * 60 * 60 * 1000
   }
 }))
+
 //Passport requirements
 app.use(passport.initialize())
 app.use(passport.session())
