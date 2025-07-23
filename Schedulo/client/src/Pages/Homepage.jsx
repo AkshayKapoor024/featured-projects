@@ -21,24 +21,27 @@ function Homepage() {
       });
   };
 
-  useEffect(() => {
-    const trySession = async()=>{
-
-  await axios.post('https://schedulo-server-pfcu.onrender.com/session-check', {
-  init: true
-}, { withCredentials: true })
-    .then(() => {
-      // Wait 50ms to allow browser to store cookie
+ useEffect(() => {
+  const trySession = async () => {
+    try {
+      await axios.post(
+        'https://schedulo-server-pfcu.onrender.com/session-check',
+        { init: true },
+        { withCredentials: true }
+      );
       setTimeout(() => {
-        const hasCookie = document.cookie.includes('connect.sid');
-        if (hasCookie) {
-          console.log('Session cookie created successfully');
-        } else {
-          console.warn('Session created, but cookie not stored yet');
-        }
+        console.log(
+          document.cookie.includes('connect.sid')
+            ? 'Session cookie created'
+            : 'Cookie not stored yet'
+        );
       }, 50);
-    });
+    } catch (e) {
+      console.error('session-check failed', e);
     }
+  };
+
+  trySession();   // ← actually call it!
 }, []);
 
   useEffect(() => {
