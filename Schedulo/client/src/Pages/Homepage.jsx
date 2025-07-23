@@ -22,6 +22,8 @@ function Homepage() {
   };
 
   useEffect(() => {
+    const trySession = async()=>{
+
   await axios.post('https://schedulo-server-pfcu.onrender.com/session-check', {
   init: true
 }, { withCredentials: true })
@@ -36,6 +38,7 @@ function Homepage() {
         }
       }, 50);
     });
+    }
 }, []);
 
   useEffect(() => {
