@@ -84,10 +84,10 @@ export default function UserForm({ focus, setFocus }) {
   };
 
   return (
-    <div className="flex-1 flex justify-center items-center bg-gray-100 rounded-r-2xl">
+   <div className="flex-1 flex justify-centerh-full w-[90vw] sm:w-[90vw] md:w-[90vw] lg:w-[80vw] xl:w-[70vw] 2xl:w-[56vw] items-center bg-gray-100 rounded-r-2xl">
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-r-2xl shadow-xl 2xl:max-w-[950px] w-full max-w-[90%] 2xl:h-[800px] h-[800px] overflow-y-scroll grid grid-cols-1 auto-rows-min gap-y-4 px-6 py-4" encType="multipart/form-data"
+        className="bg-white rounded-r-2xl shadow-xl w-full h-full overflow-y-scroll grid grid-cols-1 auto-rows-min gap-y-4 px-6 py-4" encType="multipart/form-data" 
 
       >
         <div className="text-2xl 2xl:text-4xl font-bold flex justify-center items-center h-24 text-gray-900">
@@ -95,7 +95,7 @@ export default function UserForm({ focus, setFocus }) {
         </div>
 
         {/* Username and Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <SmallInput
             label="Username"
             placeholder="Enter your username"
