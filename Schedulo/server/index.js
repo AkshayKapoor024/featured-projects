@@ -74,7 +74,18 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+passport.deserializeUser((userId, done) => {
+  console.log('🧩 Deserializing User ID:', userId);
+  User.findById(userId)
+    .then(user => {
+      console.log('✅ User found:', user);
+      done(null, user);
+    })
+    .catch(err => {
+      console.error('❌ Deserialize error:', err);
+      done(err);
+    });
+});
 passport.use(new LocalStrategy({ usernameField: 'email' }, User.authenticate()));
 
 /*Configuring google oauth strategy */
