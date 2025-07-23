@@ -65,8 +65,8 @@ app.use(session({
   saveUninitialized: false,
   store: store,
   cookie: {
-    secure: process.env.NODE_ENV === 'production', // set to true only if using HTTPS
-    httpOnly: true,
+    secure: false, // set to true only if using HTTPS
+    httpOnly: false,
     sameSite: 'none'
   }
 }))
