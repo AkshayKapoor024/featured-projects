@@ -41,7 +41,8 @@ export default function Navbar() {
     SetInput(value)
   }
   const handleInput = async ()=>{
-      navigate(`/api/searchResults?q=${input}`,{state:input})
+    if(input==='') toast.error('Enter some sentence to search!!')
+      else navigate(`/api/searchResults?q=${input}`,{state:input})
   }
   return (
     <div className="relative z-30">
@@ -63,7 +64,7 @@ export default function Navbar() {
           <Link to="/myFeedbacks" className="h-20 w-32 flex justify-center items-center" >
             Your feedback
           </Link>
-          <div className='ml-10 bg-gray-100 w-[50vw] h-[6vh] rounded-2xl flex '>
+          <div className='ml-10 bg-gray-100 md:w-[10vw] lg:w-[20vw] xl:w-[30vw] 2xl:w-[50vw] h-[6vh] rounded-2xl flex '>
             <input className='text-gray-400 w-[90%] rounded-l-2xl flex items-center p-5 text-base text-left 'placeholder='Search something here (Events , specific locations , users , fields etc. and many more)' value={input} onChange={handleInputChange}/>
             <div className='bg-indigo-600 w-[10%] rounded-r-2xl flex justify-center items-center hover:cursor-pointer btn h-full' onClick={handleInput}><img width="48" height="48" src="https://img.icons8.com/color/48/search--v1.png" alt="search--v1"/></div>
           </div>
