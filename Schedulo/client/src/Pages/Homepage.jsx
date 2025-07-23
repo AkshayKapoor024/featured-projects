@@ -22,18 +22,22 @@ function Homepage() {
   };
 
 useEffect(() => {
-  axios
-    .get('https://schedulo-server-pfcu.onrender.com/touch-session', {
-      withCredentials: true
-    })
-    .then(res => {
-      console.log('✔️ Session touched:', res.data);
-      // can store user info or flag auth context
-    })
-    .catch(() => {
-      console.warn('❌ No session – redirect or prompt login');
-    });
+  const timer = setTimeout(() => {
+    axios
+      .get('https://schedulo-server-pfcu.onrender.com/session-check', {
+        withCredentials: true
+      })
+      .then(res => {
+        console.log('✔️ Session touched:', res.data);
+      })
+      .catch(() => {
+        console.warn('❌ No session – redirect or prompt login');
+      });
+  }, 300); // Wait 300ms for cookie to attach
+
+  return () => clearTimeout(timer);
 }, []);
+
 
   useEffect(() => {
     fetchEvents();
