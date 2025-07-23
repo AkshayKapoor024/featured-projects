@@ -59,6 +59,7 @@ store.on('error',()=>{
 
 //Applying sessioning in backend
 app.use(cookieParser(process.env.SECRET))
+app.set('trust proxy', 1);
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
