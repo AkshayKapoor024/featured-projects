@@ -73,7 +73,11 @@ app.use(session({
 //Passport requirements
 app.use(passport.initialize())
 app.use(passport.session())
-passport.serializeUser(User.serializeUser())
+passport.serializeUser((user, done) => {
+  console.log('🔐 Serializing user:', user._id);
+  done(null, user._id); // store only the user ID in session
+});
+
 passport.deserializeUser((userId, done) => {
   console.log('🧩 Deserializing User ID:', userId);
   User.findById(userId)
@@ -159,11 +163,10 @@ app.use('/events/:eventid/rsvp/:userid', rsvpRoute)
 
 //Explicitly called session checking router handler to help create server to make client create a session id
 app.get('/session-check', (req, res) => {
-  req.session.greeting = 'Welcome';
-  console.log('Session ID:', req.sessionID);
-console.log('Session:', req.session);
-console.log('User:', req.user);
-  res.send('Session initialized');
+  console.log('🌐 Session:', req.session);
+  console.log('🧠 User:', req.user);
+  console.log('🔐 Authenticated:', req.isAuthenticated());
+  res.send(`Session active. Authenticated: ${req.isAuthenticated()}`);
 });
 
 //Index route
