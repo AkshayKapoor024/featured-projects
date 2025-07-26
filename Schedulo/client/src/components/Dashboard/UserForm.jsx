@@ -84,7 +84,7 @@ export default function UserForm({ focus, setFocus }) {
   };
 
   return (
-   <div className="flex-1 flex justify-centerh-full w-[90vw] sm:w-[90vw] md:w-[90vw] lg:w-[80vw] xl:w-[70vw] 2xl:w-[56vw] xl:w-[90vh] items-center bg-gray-100 rounded-r-2xl">
+   <div className="flex-1 flex justify-center h-full w-[90vw] sm:w-[90vw] md:w-[90vw] lg:w-[80vw] xl:w-[70vw] 2xl:w-[56vw] items-center bg-gray-100 rounded-r-2xl">
       <form
         onSubmit={handleSubmit}
         className="bg-white rounded-r-2xl shadow-xl w-full h-full overflow-y-scroll grid grid-cols-1 auto-rows-min gap-y-4 px-6 py-4" encType="multipart/form-data" 
