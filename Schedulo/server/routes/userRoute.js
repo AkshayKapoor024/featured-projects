@@ -6,7 +6,7 @@ const multer = require('multer')
 const { cloudinary, storage } = require('../cloudConfig.js')
 const upload = multer({ storage })
 const {eventValidation,parseArraysMiddleware,requireAuthUser,reviewValidation,userValidation,rsvpValidation}=require('../middlewares/middleware.js')
-const {signupUser,loginUser,logoutUser,googleAuthCallbackFunction,AuthenticationCheck,userDetailing,findUsers,saveUserInfo,findRsvp,findReviews}=require('../controllers/userFunc.js')
+const {signupUser,loginUser,logoutUser,googleAuthCallbackFunction,AuthenticationCheck,userDetailing,findUsers,saveUserInfo,findRsvp,findReviews,getSearch}=require('../controllers/userFunc.js')
 //Authentication routes
 //Sign-up route
 router.post('/signup', userValidation, wrapAsync(signupUser))
@@ -39,5 +39,5 @@ router.post('/userDashboard/profile/saveDetails', upload.single('image'), requir
 //Route for giving user rsvps currently done !!!
 router.get('/userRsvp', requireAuthUser, wrapAsync(findRsvp))
 router.get(`/users/:userid/reviews/YourReviews`, wrapAsync(findReviews))
-
+router.get('/api/searchResults',wrapAsync(getSearch))
 module.exports = router
