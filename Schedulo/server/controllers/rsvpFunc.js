@@ -3,6 +3,11 @@ const Event = require('../models/event')
 const Rsvp = require('../models/rsvp')
 const User = require('../models/user')
 const {LayoutSchedule} = require('../utils/Email/Layout')
+const { v4: uuidv4 } = require('uuid');
+const { renderImage, renderPDF, generateTicketHTML } = require('../utils/QrCodeUtils.js')
+const { cloudinary, storage } = require('../cloudConfig.js')
+const { Readable } = require('stream');
+const { LayoutTicket } = require('../utils/Email/Layout.js')
 
 module.exports.addRsvp = async (req, res, next) => {
         //RSVP Model 
@@ -96,4 +101,88 @@ module.exports.addRsvp = async (req, res, next) => {
     let response = await Rsvp.findOne({ eventid: eventid, userid: userid })
     if (response) res.send(response)
     else res.status(404).send({ error: 'Rsvp not found for this user and event' })
+}
+
+function bufferToStream(buffer) {
+    const readable = new Readable();
+    readable.push(buffer);
+    readable.push(null);
+    return readable;
+}
+module.exports.generateTicket = async (req, res) => {
+    let { eventid, userid } = req.params
+    let { type } = req.query
+    const event = await Event.findById(eventid)
+    const user = await User.findById(userid)
+    let rsvp = await Rsvp.findOne({ eventid, userid })
+    if (!rsvp) return res.status(404).send('Error: Rsvp not found for this user!')
+    if (rsvp.ticketId && rsvp.ticketURL) {
+        // Construct download link using ticketURL and desired download flag
+        const downloadLink = rsvp.ticketURL.replace('/upload/', '/upload/fl_attachment/');
+        try {
+            await LayoutTicket(user.email, `Ticket for event ${event.title}`, user.username, event, user, downloadLink)
+        } catch (err) {
+            return res.status(500).send(`Internal server error , email could not be sent`)
+        }
+        return res.send('Ticket sent again to the user email');
+    } else {
+
+        const ticketId = uuidv4()
+        rsvp.ticketId = ticketId
+        await rsvp.save()
+        const htmlContent = await generateTicketHTML(user, event, ticketId)
+        if (type === 'pdf') {
+            const ticketPDF = await renderPDF(htmlContent)
+            await new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'Project1/tickets',
+                        public_id: `ticket_${ticketId}`,
+                        format: 'pdf',
+                        resource_type: 'raw' // critical for non-image files like PDF
+                    },
+                    async (error, result) => {
+                        if (error) return reject(error);
+                        rsvp.ticketURL = result.secure_url;
+                        await rsvp.save();
+                        resolve()
+                    }
+                );
+                bufferToStream(ticketPDF).pipe(stream);
+            });
+            const downloadURL = rsvp.ticketURL.replace('/upload/', '/upload/fl_attachment/');
+            try {
+
+                await LayoutTicket(user.email, `Ticket for event ${event.title}`, user.username, event, user, downloadURL)
+            } catch (err) {
+                return res.status(500).send(`Internal server error , email could not be sent`)
+            }
+            res.send(`Congratulations!,Your ticket is sent on your registered email`)
+        }
+        else if (type === 'img') {
+            const ticketImage = await renderImage(htmlContent)
+            await new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'Project1/tickets',
+                        public_id: `ticket_${ticketId}`,
+                        format: 'jpg',
+                        resource_type: 'image'
+                    },
+                    async (error, result) => {
+                        if (error) return reject(error);
+                        rsvp.ticketURL = result.secure_url;
+                        await rsvp.save();
+                        resolve();
+                    }
+                );
+                bufferToStream(ticketImage).pipe(uploadStream);
+            });
+            const downloadURL = rsvp.ticketURL.replace('/upload/', '/upload/fl_attachment/');
+            await LayoutTicket(user.email, `Ticket for event ${event.title}`, user.username, event, user, downloadURL)
+            res.send(`Congratulations!,Your ticket is sent on your registered email`)
+        } else {
+            res.status(400).send(`Bad Request`)
+        }
+    }
 }
