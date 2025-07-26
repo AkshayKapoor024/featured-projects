@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.plugin(passportLocalMongoose,{usernameField:'email'})
+userSchema.plugin(passportLocalMongoose, {
+  usernameField: 'email',
+  usernameUnique: false // 🔑 prevents duplicate username index
+});
+
 const User = mongoose.model('user',userSchema)
 module.exports=User
