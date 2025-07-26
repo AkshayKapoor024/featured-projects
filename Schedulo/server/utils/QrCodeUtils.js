@@ -1,7 +1,10 @@
 const QRCode = require('qrcode');
 const puppeteer = require('puppeteer');
 module.exports.renderImage=async(htmlContent)=> {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+  headless: 'new', // Enables modern headless mode
+  args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required in serverless environments like Render
+});
   const page = await browser.newPage();
 
   await page.setContent(htmlContent);
@@ -11,7 +14,10 @@ module.exports.renderImage=async(htmlContent)=> {
   return imageBuffer;
 }
 module.exports.renderPDF = async(htmlContent)=> {
-  const browser = await puppeteer.launch();
+ const browser = await puppeteer.launch({
+  headless: 'new', // Enables modern headless mode
+  args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required in serverless environments like Render
+});
   const page = await browser.newPage();
 
   await page.setContent(htmlContent);
