@@ -37,7 +37,16 @@ const rsvp = new mongoose.Schema({
     },
     info:{
         type:String
-    }
+    },
+    ticketId:{
+        type:String,
+        required:false
+    },
+    ticketURL:{
+        type:String,
+        required:false
+    },
+    ticketUsed:Boolean
 })
 
 const Rsvp = mongoose.model('rsvp',rsvp)
