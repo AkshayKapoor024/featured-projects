@@ -115,6 +115,11 @@ module.exports.generateTicket = async (req, res) => {
     const event = await Event.findById(eventid)
     const user = await User.findById(userid)
     let rsvp = await Rsvp.findOne({ eventid, userid })
+        console.log(eventid , userid)
+        console.log(type)
+        console.log(event)
+        console.log(user)
+        console.log(rsvp)
     if (!rsvp) return res.status(404).send('Error: Rsvp not found for this user!')
     if (rsvp.ticketId && rsvp.ticketURL) {
         // Construct download link using ticketURL and desired download flag
@@ -131,7 +136,8 @@ module.exports.generateTicket = async (req, res) => {
         rsvp.ticketId = ticketId
         await rsvp.save()
         const htmlContent = await generateTicketHTML(user, event, ticketId)
-        if (type === 'pdf') {
+                console.log(htmlContent)
+            if (type === 'pdf') {
             const ticketPDF = await renderPDF(htmlContent)
             await new Promise((resolve, reject) => {
                 const stream = cloudinary.uploader.upload_stream(
