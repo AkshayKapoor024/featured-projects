@@ -3,7 +3,6 @@ const puppeteer = require('puppeteer');
 module.exports.renderImage=async(htmlContent)=> {
   const browser = await puppeteer.launch({
   headless: 'new', // Enables modern headless mode
-  executablePath: puppeteer.executablePath(),
   args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required in serverless environments like Render
 });
   const page = await browser.newPage();
@@ -17,7 +16,6 @@ module.exports.renderImage=async(htmlContent)=> {
 module.exports.renderPDF = async(htmlContent)=> {
  const browser = await puppeteer.launch({
   headless: 'new', // Enables modern headless mode
-  executablePath: puppeteer.executablePath(),
    args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required in serverless environments like Render
 });
   const page = await browser.newPage();
