@@ -3,6 +3,7 @@ const Rsvp = require('../models/rsvp.js')
 const User = require('../models/user.js')
 const {Layout} = require('../utils/Email/Layout')
 const defaultProfilePic = 'https://wallpaperaccess.com/full/959317.jpg'
+const getList = require('../utils/searchQuery.js')
 module.exports.signupUser = async (req, res) => {
     try {
 
@@ -102,3 +103,11 @@ module.exports.findReviews = async (req, res) => {
     //let obj = await Review.find({author:userid})
     res.send(reviews)
 }
+module.exports.getSearch = async(req,res)=>{
+  let {inputQuery} =req.query
+  let eventList = await getList(inputQuery)
+  console.log(eventList)
+  if(Array.isArray(eventList))res.send(eventList)
+    else res.status(404).send(`No Event found`)
+}
+
