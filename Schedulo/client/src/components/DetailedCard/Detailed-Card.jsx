@@ -103,6 +103,21 @@ export default function DetailedCard({ obj, setEventData }) {
             toast.error(`Error: ${error.message}`)
         }
     }
+
+ const handleTicket = async () => {
+        try {
+            let userdetails = undefined
+            userdetails = await axios.get('http://localhost:3000/isAuthenticated', {
+                withCredentials: true,
+            })
+            setUser((prev) => ({ email: userdetails.data.email, username: userdetails.data.username, _id: userdetails.data._id }))
+            await axios.get(`http://localhost:3000/events/${obj._id}/rsvp/${userdetails.data._id}/generateTicket?type=pdf`)
+            toast.success(`Ticket sent via email success`)
+        } catch (error) {
+            toast.error(`Error: ${error.message}`)
+        }
+    }
+    
     const handleDeleteReview = (reviewid, authorid) => {
         try {
             const deleteReview = async () => {
@@ -231,9 +246,10 @@ export default function DetailedCard({ obj, setEventData }) {
 
 
                             </div>
-                            <div className="flex flex-col m-3 gap-5 justify-center items-center h-32">
+                            <div className="flex flex-col m-3 gap-5 justify-center items-center">
                                 {isRegistered == false ? <div className="h-16 min-w-74 flex justify-center items-center btn btn-primary text-xl 2xl:w-[400px]" onClick={handleRegister}>Register here</div> : <div className="h-16 min-w-74 flex justify-center items-center btn btn-primary text-xl" onClick={handleRegister}>Update registeration</div>}
                                 {isRegistered == true ? <div className="btn btn-error btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={withdrawRegisteration}>Withdraw registeration</div> : null}
+                                {isRegistered == true ? <div className="btn btn-outline btn-info btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={handleTicket}>Get QR Ticket</div> : null}
                             </div>
                         </div>
                     </div>
