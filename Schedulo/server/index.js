@@ -121,44 +121,6 @@ passport.use(new GoogleStrategy({
   }
 }));
 
-
-async function getResponse(Query) {
-  return await GEMINI_API_FUNCTION(Query)
-}
-
-const getList = async (Query) => {
-  const queryObj = await getResponse(Query);
-  console.log(queryObj);
-
-  if (!queryObj.error) {
-    // Build flexible date query
-    let dateFilter = {};
-    if (queryObj.startDate && queryObj.endDate) {
-      dateFilter.date = {
-        $gte: new Date(queryObj.startDate),
-        $lte: new Date(queryObj.endDate)
-      };
-    } else if (queryObj.startDate) {
-      dateFilter.date = { $gte: new Date(queryObj.startDate) };
-    } else if (queryObj.endDate) {
-      dateFilter.date = { $lte: new Date(queryObj.endDate) };
-    }
-
-    const mongoQuery = {
-      ...(queryObj.title && { title: { $regex: queryObj.title, $options: 'i' } }),
-      ...(queryObj.description && { description: { $regex: queryObj.description, $options: 'i' } }),
-      ...(queryObj.venue && { venue: { $regex: queryObj.venue, $options: 'i' } }),
-      ...(queryObj.enums?.length && { enums: { $in: queryObj.enums } }),
-      ...dateFilter
-    };
-
-    const results = await Event.find(mongoQuery);
-    return results;
-  } else {
-     return new customError(404,'Bad Request!!');
-  }
-};
-
 app.use('/events', eventRoute)
 app.use('/', userRoute)
 app.use('/events/:eventid', reviewRoute)
@@ -178,14 +140,6 @@ app.get('/session-check', (req, res) => {
 app.get('/', (req, res) => {
   res.send(`working`)
 })
-
-app.get('/api/searchResults',wrapAsync(async(req,res)=>{
-  let {inputQuery} =req.query
-  let eventList = await getList(inputQuery)
-  console.log(eventList)
-  if(Array.isArray(eventList))res.send(eventList)
-    else res.status(404).send(`No Event found`)
-}))
 
 //Our own error handling middleware
 app.use((err, req, res, next) => {
