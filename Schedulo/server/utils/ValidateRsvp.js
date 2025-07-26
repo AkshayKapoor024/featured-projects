@@ -9,4 +9,7 @@ module.exports = new joi.object({
         checkedIn:joi.boolean().optional(),
         feedback:joi.string().optional(),
         info:joi.string().optional(),
+        ticketId:joi.string().optional(),
+        ticketURL:joi.string().optional(),
+        ticketUsed:joi.boolean().optional()
 })
