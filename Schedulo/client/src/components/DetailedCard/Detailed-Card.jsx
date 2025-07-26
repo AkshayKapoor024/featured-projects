@@ -107,11 +107,11 @@ export default function DetailedCard({ obj, setEventData }) {
  const handleTicket = async () => {
         try {
             let userdetails = undefined
-            userdetails = await axios.get('http://localhost:3000/isAuthenticated', {
+            userdetails = await axios.get('https://schedulo-server-pfcu.onrender.com/isAuthenticated', {
                 withCredentials: true,
             })
             setUser((prev) => ({ email: userdetails.data.email, username: userdetails.data.username, _id: userdetails.data._id }))
-            await axios.get(`http://localhost:3000/events/${obj._id}/rsvp/${userdetails.data._id}/generateTicket?type=pdf`)
+            await axios.get(`https://schedulo-server-pfcu.onrender.com/events/${obj._id}/rsvp/${userdetails.data._id}/generateTicket?type=pdf`)
             toast.success(`Ticket sent via email success`)
         } catch (error) {
             toast.error(`Error: ${error.message}`)
