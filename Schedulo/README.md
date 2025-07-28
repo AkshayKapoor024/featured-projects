@@ -4,7 +4,7 @@
 **Built by:** Akshay Kapoor  
 📧 `work.akshaykapoor@gmail.com`  
 📞 `+91-9818624070`  
-🔗 [LinkedIn](https://linkedin.com/in/kapoorakshay24) | [GitHub](https://github.com/AkshayKapoor024) | [Website](https://go-schedulo.vercel.app)
+🔗 [LinkedIn](https://linkedin.com/in/kapoorakshay24) | [GitHub](https://github.com/AkshayKapoor024) | [Go-Schedulo](https://go-schedulo.vercel.app)
 
 ---
 
