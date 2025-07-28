@@ -2,9 +2,9 @@
 ### *Plan. Invite. Connect. Seamlessly.*  
 
 **Built by:** Akshay Kapoor  
-📧 `your.email@example.com`  
-📞 `+91-XXXXXXXXXX`  
-🔗 [LinkedIn](https://linkedin.com/in/your-profile) | [GitHub](https://github.com/yourusername) | [Website](https://go-schedulo.vercel.app)
+📧 `work.akshaykapoor@gmail.com`  
+📞 `+91-9818624070`  
+🔗 [LinkedIn](https://linkedin.com/in/kapoorakshay24) | [GitHub](https://github.com/AkshayKapoor024) | [Website](https://go-schedulo.vercel.app)
 
 ---
 
@@ -36,8 +36,6 @@ Users can create public/private events with:
 - Date & Time (with countdown)
 - Location, host name, cohosts (optional) and banner image
 
-`![Event Creation UI](# "Path: ./screenshots/event-creation.png")`
-
 ---
 
 ### 📥 RSVP System  
@@ -46,7 +44,6 @@ Users can create public/private events with:
 - Auto-filled form with status update & cancellation support
 - Organizer can view attendees in real-time
 
-`![RSVP Form](# "Path: ./screenshots/rsvp-form.png")`
 
 ---
 
@@ -56,8 +53,6 @@ Users can create public/private events with:
 - Filters by category, location, status , title and time
 - Built using Gemini API (can toggle off for fallback)
 
-`![AI Search](# "Path: ./screenshots/ai-search.png")`
-
 ---
 
 ### 🧑‍🤝‍🧑Google Calendar API Integration
@@ -65,16 +60,12 @@ Users can create public/private events with:
 - Feature asks user consent everytime for integration
 - In App notifications for success or failure 
 
-`![Group RSVP](# "Path: ./screenshots/group-rsvp.png")`
-
 ---
 
 ### 📲 Contactless QR Ticket Generation  
 - RSVP’d users get downloadable ticket with unique QR
 - Organizer can scan at check-in to mark attendance
 - Security hash prevents reuse or tampering
-
-`![QR Ticket](# "Path: ./screenshots/qr-ticket.png")`
 
 ---
 
@@ -84,7 +75,6 @@ Users can create public/private events with:
   - Submit star rating (1–5)
 - Feedback is visible on event page (public/private based on host choice)
 - Your feedbacks section allows users can see past feedbacks and can directly navigate to them
-`![Feedback UI](# "Path: ./screenshots/feedback.png")`
 
 ---
 
