@@ -1,10 +1,10 @@
-# 🎉 MeetEase – Your Smart Event Scheduling & RSVP Platform  
+# 🎉 Schedulo – Your Smart Event Scheduling & RSVP Platform  
 ### *Plan. Invite. Connect. Seamlessly.*  
 
 **Built by:** Akshay Kapoor  
 📧 `your.email@example.com`  
 📞 `+91-XXXXXXXXXX`  
-🔗 [LinkedIn](https://linkedin.com/in/your-profile) | [GitHub](https://github.com/yourusername)
+🔗 [LinkedIn](https://linkedin.com/in/your-profile) | [GitHub](https://github.com/yourusername) | [Website](https://go-schedulo.vercel.app)
 
 ---
 
@@ -13,12 +13,16 @@ In a digital world where remote collaboration and physical events are booming, t
 - Effortlessly create and manage events
 - RSVP and collaborate in groups
 - Track participation and feedback
+- Admin Dashboard for Attendee and rsvp details
+- AI Based QR Ticket generation
+- Email Notification system for activity tracking and ticket download feature
+- Google calendar integration for event reminder
 - Provide modern utilities like QR check-ins, AI-based discovery, and friend-linked group management
 
 ---
 
 ## 💡 Idea & Project Summary  
-**MeetEase** is a **full-stack MERN-based intelligent event platform** that combines clean UI, feature-rich UX, and AI-powered tools for a top-tier event management experience.
+**Schedulo** is a **full-stack MERN-based intelligent event platform** that combines clean UI, feature-rich UX, and AI-powered tools for a top-tier event management experience.
 
 > ✅ Whether it’s a small meetup or a large conference, MeetEase handles the entire flow: Event creation ➝ Invitations ➝ RSVPs ➝ Group participation ➝ Feedback ➝ Smart filters ➝ QR check-ins
 
@@ -30,7 +34,7 @@ In a digital world where remote collaboration and physical events are booming, t
 Users can create public/private events with:
 - Title, description, category
 - Date & Time (with countdown)
-- Location, host name, and banner image
+- Location, host name, cohosts (optional) and banner image
 
 `![Event Creation UI](# "Path: ./screenshots/event-creation.png")`
 
@@ -47,19 +51,19 @@ Users can create public/private events with:
 ---
 
 ### 🔍 AI-Powered Search & Filter  
+- Used Google Gemini generative AI API for NLP and intents classification
 - Natural language search: “show me hackathons this weekend”
-- Filters by category, location, status
-- Built using OpenAI/Gemini API (can toggle off for fallback)
+- Filters by category, location, status , title and time
+- Built using Gemini API (can toggle off for fallback)
 
 `![AI Search](# "Path: ./screenshots/ai-search.png")`
 
 ---
 
-### 🧑‍🤝‍🧑 Group RSVP Mode  
-- User can create & share RSVP group links with friends
-- Requires user-to-user friend system
-- Group RSVP status visible to all members
-- Admin-only control over group size and restrictions
+### 🧑‍🤝‍🧑Google Calendar API Integration
+- User can add the event to their google calendar for reminders
+- Feature asks user consent everytime for integration
+- In App notifications for success or failure 
 
 `![Group RSVP](# "Path: ./screenshots/group-rsvp.png")`
 
@@ -79,7 +83,7 @@ Users can create public/private events with:
   - Leave feedback text
   - Submit star rating (1–5)
 - Feedback is visible on event page (public/private based on host choice)
-
+- Your feedbacks section allows users can see past feedbacks and can directly navigate to them
 `![Feedback UI](# "Path: ./screenshots/feedback.png")`
 
 ---
@@ -87,6 +91,7 @@ Users can create public/private events with:
 ## 🛠️ Tech Stack
 
 ### 🧾 Frontend (React + Tailwind + DaisyUI)
+- `React.js`
 - `react-router-dom`
 - `axios`
 - `framer-motion`
@@ -94,16 +99,25 @@ Users can create public/private events with:
 - `@headlessui/react`
 - `react-icons`
 - `date-fns`
-
+- `Daisy-UI`
+- `puppetter` - for downloading images and pdf
+-  `qrcode`- for ticket generation
+- `multer` - for uploading files
 ### ⚙️ Backend (Node + Express + MongoDB Atlas)
+- `express.js`
+- `mongoDB`
 - `mongoose`
-- `jsonwebtoken`, `bcryptjs` – Auth
+- `passport.js` – Auth
 - `passport`, `passport-google-oauth20`
+- `cookie-parser $ express-sessions` - for user sessions
+- `connect-mongo` - for session storage
 - `joi` – Validations
 - `multer` – File handling
 - `cloudinary` – Media storage
 - `nodemailer` – Email notifications
-
+- `Agenda` - for scheduling emails
+- `Gemini generative AI Api` - for NLP and intent processing
+- `Google calendar` - for Calendar based reminder system    
 ### 📦 Tools & External Services
 - **Render.com** – Deployment
 - **Cloudinary** – Image & ticket storage
@@ -116,23 +130,23 @@ Users can create public/private events with:
 
 ## 🧾 Feature Summary Table
 
-| 🔢 # | 🌟 Feature                           | ✅ Status | 📷 Screenshot Tag                     |
-|-----|-------------------------------------|----------|--------------------------------------|
-| 1   | Event Creation + Edit/Delete        | ✅        | `event-creation.png`                 |
-| 2   | RSVP System (auth-based)            | ✅        | `rsvp-form.png`                      |
-| 3   | View & Manage Attendees             | ✅        | `attendees.png`                      |
-| 4   | AI-Powered Search & Filters         | ✅        | `ai-search.png`                      |
-| 5   | QR Code Ticket Generator            | ✅        | `qr-ticket.png`                      |
-| 6   | Feedback & Rating System            | ✅        | `feedback.png`                       |
-| 7   | Group RSVP with Link Sharing        | ✅        | `group-rsvp.png`                     |
-| 8   | Authentication (Local + Google)     | ✅        | `auth.png`                           |
-| 9   | Admin View for Events & RSVP Stats  | ✅        | `admin-stats.png`                    |
-
+| 🔢 # | 🌟 Feature                        | ✅ Status |
+|-----|-------------------------------------|------------|
+| 1   | Event CRUD Operations easily        | ✅        | 
+| 2   | RSVP System (auth-based)            | ✅        |
+| 3   | View & Manage Attendees             | ✅        |
+| 4   | AI-Powered Search & Filters         | ✅        |
+| 5   | QR Code Ticket Generator            | ✅        |
+| 6   | Feedback & Rating System            | ✅        |
+| 7   | Google Calendar reminder system     | ✅        |
+| 8   | Authentication (Local + Google)     | ✅        |
+| 9   | Admin View for Events & RSVP Stats  | ✅        |
+| 10  | User Dashboard for own details      | ✅        |
 ---
 
 ## 🎯 Final Thoughts  
 
-MeetEase was designed not just to solve a functional problem—but to **showcase full-stack ability, system thinking, and feature innovation**.  
+Schedulo was designed not just to solve a functional problem—but to **showcase full-stack ability, system thinking, and feature innovation**.  
 
 From **AI tools** to **real-time RSVP tracking**, from **responsive design** to **cloud integration**, this project aims to deliver a **production-grade application** that will **impress recruiters and stakeholders alike**.
 
@@ -142,3 +156,4 @@ From **AI tools** to **real-time RSVP tracking**, from **responsive design** to 
 `— Akshay Kapoor`
 
 > Want to check out the demo or contribute? Ping me via LinkedIn or GitHub!
+See demo @ (https://go-schedulo.vercel.app)
