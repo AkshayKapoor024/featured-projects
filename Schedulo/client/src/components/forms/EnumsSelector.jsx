@@ -31,7 +31,7 @@ export default function EnumsSelector({ max = 5, enums, setEnums, label }) {
       <label className="text-xl font-semibold pb-1 text-gray-600">{label}</label>
 
       {/* Input and Add Button */}
-      <div className="flex gap-2 w-[350px] md:w-[600px] lg:w-[800px] xl:w-[1000px] 2xl:w-[400px] ">
+      <div className="flex gap-2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] 2xl:w-[400px] ">
         <input
           type="text"
           placeholder="Add tag (e.g. Blockchain)"
