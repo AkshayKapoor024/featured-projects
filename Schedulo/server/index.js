@@ -22,6 +22,8 @@ const Event = require('./models/event')
 const customError = require('./utils/customError')
 const wrapAsync = require('./utils/wrapAsync')
 const MongoStore = require('connect-mongo');
+const { google } = require('googleapis');
+const createCalendarEvent = require('./utils/googleCalendar')
 //Used to parse json data coming from requests
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -121,6 +123,33 @@ passport.use(new GoogleStrategy({
   }
 }));
 
+
+passport.use('google-calendar', new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: 'https://schedulo-server-pfcu.onrender.com/auth/google/calendar/callback',
+  passReqToCallback: true
+}, async (req, accessToken, refreshToken, profile, done) => {
+  // Attach OAuth data to request (NOT session)
+  req.calendarData = {
+    accessToken,
+    refreshToken,
+    email: profile.emails[0].value,
+    displayName: profile.displayName
+  };
+
+  return done(null, { calendarAuth: req.calendarData }); // Skip serialization
+}));
+
+
+function getOAuthClient(refreshToken) {
+  const oauth2Client = new google.auth.OAuth2(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET
+  );
+  oauth2Client.setCredentials({ refresh_token: refreshToken });
+  return oauth2Client;
+}
 app.use('/events', eventRoute)
 app.use('/', userRoute)
 app.use('/events/:eventid', reviewRoute)
@@ -140,6 +169,75 @@ app.get('/session-check', (req, res) => {
 app.get('/', (req, res) => {
   res.send(`working`)
 })
+
+
+app.get('/calendar/authorize', (req, res, next) => {
+  const eventDetails = {
+    summary: req.query.title,
+    startTime: req.query.startTime,
+    endTime: req.query.endTime,
+    location: req.query.venue,
+    description: req.query.description
+  };
+  console.log(eventDetails)
+  const state = encodeURIComponent(JSON.stringify(eventDetails));
+
+  passport.authenticate('google-calendar', {
+    scope: ['https://www.googleapis.com/auth/calendar.events', 'profile', 'email'],
+    accessType: 'offline',
+    prompt: 'consent',
+    session: false,
+    state
+  })(req, res, next);
+});
+
+app.get('/auth/google/calendar/callback',
+  passport.authenticate('google-calendar', {
+    failureRedirect: 'https://go-schedulo.vercel.app/',
+    session: false
+  }),
+  async (req, res) => {
+    try {
+      const state = JSON.parse(decodeURIComponent(req.query.state));
+      console.log(state)
+      const { accessToken, refreshToken, email } = req.calendarData;
+
+      const oauth2Client = getOAuthClient(refreshToken);
+      const { token } = await oauth2Client.getAccessToken();
+      if (!token) {
+        console.warn('⚠️ No access token returned from refresh');
+        return res.status(401).send('Token refresh failed');
+      }
+      console.log('🕓 Incoming times:', state.startTime, state.endTime);
+      console.log('📌 Type of startTime:', typeof state.startTime); // Should be 'string'
+      console.log('📦 Parsed state object:', JSON.stringify(state, null, 2));
+      const result = await createCalendarEvent(token, {
+        summary: state.summary,
+        location: state.location,
+        description: state.description,
+        startTime: state.startTime,
+        endTime: state.endTime
+
+      });
+      console.log(result)
+      console.log('📆 Event created:', result.htmlLink);
+
+      const user = await User.findOne({ email });
+      if (user) {
+        user.calendar = { accessToken: token, refreshToken };
+        await user.save();
+      }
+
+      res.redirect('http://localhost:5173/?calendar=success');
+    } catch (error) {
+      console.error('🔑 Token refresh failed:', error);
+      res.redirect('http://localhost:5173/?calendar=failure');
+    }
+  }
+);
+
+
+
 
 //Our own error handling middleware
 app.use((err, req, res, next) => {
