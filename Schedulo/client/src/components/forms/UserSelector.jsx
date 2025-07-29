@@ -60,7 +60,7 @@ export default function UserSelector({ type, max = 5, selectedUsers, setSelected
       <label className="text-xl font-semibold pb-1 text-gray-600">{label}</label>
 
       {/* Search Box */}
-      <div className="flex gap-2 w-[350px] md:w-[600px] lg:w-[800px] xl:w-[1000px] 2xl:w-[400px]">
+      <div className="flex gap-2 w-[300px] md:w-[600px] lg:w-[800px] xl:w-[1000px] 2xl:w-[400px]">
         <input
           type="text"
           placeholder="Enter user email"
