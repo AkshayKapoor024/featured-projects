@@ -32,6 +32,8 @@ export default function DetailedCard({ obj, setEventData }) {
     }
     const [isRegistered, setRegistered] = useState(false)
     const [calButton, setButton] = useState('notclicked')
+     const startTime = new Date(`${obj.date}T${obj.time}`).toISOString();
+    const endTime = new Date(`${obj.date}T23:59:59`).toISOString();
     const [clicked, setClick] = useState(false)
     const [user, setUser] = useState({ email: "", username: "", _id: "" })
     const handleDelete = async (e) => {
