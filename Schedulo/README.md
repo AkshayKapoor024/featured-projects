@@ -2,7 +2,7 @@
 ### *Plan. Invite. Connect. Seamlessly.*  
 
 **Built by:** Akshay Kapoor  
-📧 `work.akshaykapoor@gmail.com`  
+📧 `work.akshaykapoor24@gmail.com`  
 📞 `+91-9818624070`  
 🔗 [LinkedIn](https://linkedin.com/in/kapoorakshay24) | [GitHub](https://github.com/AkshayKapoor024) | [Go-Schedulo](https://go-schedulo.vercel.app)
 
