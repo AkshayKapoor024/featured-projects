@@ -117,7 +117,25 @@ export default function DetailedCard({ obj, setEventData }) {
             toast.error(`Error: ${error.message}`)
         }
     }
-    
+    const handleCalendar = async () => {
+        setButton('loading')
+        try {
+
+            const response = await axios.post('http://localhost:3000/calendar/authorize', {
+                summary: obj.title,
+                startTime: startTime,
+                endTime: endTime,
+                location: obj.venue,
+                description: obj.description
+            })
+            window.location.href = res.data.redirectUrl;
+            toast.success('Event Added to Calendar successfully!')
+            setButton('success')
+        } catch (error) {
+            setButton('tryagain')
+            toast.error(`Error while adding to calendar:${error.message}`)
+        }
+    }
     const handleDeleteReview = (reviewid, authorid) => {
         try {
             const deleteReview = async () => {
@@ -250,6 +268,11 @@ export default function DetailedCard({ obj, setEventData }) {
                                 {isRegistered == false ? <div className="h-16 min-w-74 flex justify-center items-center btn btn-primary text-xl 2xl:w-[400px]" onClick={handleRegister}>Register here</div> : <div className="h-16 min-w-74 flex justify-center items-center btn btn-primary text-xl" onClick={handleRegister}>Update registeration</div>}
                                 {isRegistered == true ? <div className="btn btn-error btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={withdrawRegisteration}>Withdraw registeration</div> : null}
                                 {isRegistered == true ? <div className="btn btn-outline btn-info btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={handleTicket}>Get QR Ticket</div> : null}
+                                 {isRegistered == true && calButton === 'notclicked' ? <a href={`http://localhost:3000/calendar/authorize?title=${obj.title}&venue=${obj.venue}&description=${obj.description}&startTime=${startTime}&endTime=${endTime}`}>
+                                    <div className="btn btn-soft btn-warning btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] ">Add this event to Calendar</div></a> : null}
+                                {isRegistered == true && calButton === 'loading' ? <div className="pointer-events-none opacity-50 cursor-not-allowed btn btn-soft btn-warning btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={handleCalendar}>Adding event to your calendar...</div> : null}
+                                {isRegistered == true && calButton === 'success' ? <div className="pointer-events-none opacity-50 cursor-not-allowed btn btn-soft  btn-warning btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={handleCalendar}>Event already added to calendar</div> : null}
+                                {isRegistered == true && calButton === 'tryagain' ? <div className="btn btn-soft btn-warning btn-wide 2xl:h-16 2xl:text-xl 2xl:w-[400px] " onClick={handleCalendar}>Try again ?</div> : null}
                             </div>
                         </div>
                     </div>
