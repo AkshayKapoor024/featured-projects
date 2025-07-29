@@ -83,9 +83,9 @@ export default function EventForm() {
         <LargeInput label="Title" placeholder="Ex - Blockchain Community Seminar" value={formData.title} onChange={handleChange} name="title" />
         <DescriptionArea label="Description" placeholder="Event Description" value={formData.description} onChange={handleChange} name="description" />
 
-        <div className="grid grid-cols-2 h-24 justify-evenly items-center px-4">
+        <div className="grid grid-cols-2 h-24 justify-evenly items-center px-4 mb-5">
           <SmallInput label="Type" placeholder="Online/Offline/Hybrid" value={formData.type} onChange={handleChange} name="type" />
-          <input type="file" accept="image/*" name="image" onChange={handleFileChange} className='text-gray-600 ring-1 ring-blue-300 w-[19.5vw]'/>
+          <input type="file" accept="image/*" name="image" onChange={handleFileChange} className='text-gray-600 ring-1 ring-blue-300 w-[80vw] relative right-[40vw] top-[16vw] md:relative md:top-[0vh] md:left-[10vw] md:w-[30vw] 2xl:w-[20vw]'/>
         </div>
 
         <CalendarInput date={formData.date} time={formData.time} onDateChange={handleDateSelect} onTimeChange={handleTimeChange} />
