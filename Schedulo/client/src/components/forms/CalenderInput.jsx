@@ -4,7 +4,7 @@ import 'react-day-picker/dist/style.css';
 export default function CalendarInput({ date, time, onDateChange, onTimeChange, Datename, Timename }) {
   return (
     <>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
         {/* Date Picker Section */}
         <div className="flex flex-col items-center justify-center p-4 rounded">
           <label className="text-xl text-center font-semibold text-gray-600 mb-2">Date</label>
