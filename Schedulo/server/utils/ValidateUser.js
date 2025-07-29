@@ -14,4 +14,8 @@ module.exports =new joi.object({
   occupation:joi.string().optional(),
   organization:joi.string().optional(),
   profilepic:joi.string().optional(),
+  calendar:joi.object({
+    accessToken:joi.string().optional(),
+    refreshToken:joi.string().optional()
+  })
 })
