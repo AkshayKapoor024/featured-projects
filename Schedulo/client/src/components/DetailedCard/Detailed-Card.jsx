@@ -31,7 +31,7 @@ export default function DetailedCard({ obj, setEventData }) {
         checkAuth()
     }
     const [isRegistered, setRegistered] = useState(false)
-
+    const [calButton, setButton] = useState('notclicked')
     const [clicked, setClick] = useState(false)
     const [user, setUser] = useState({ email: "", username: "", _id: "" })
     const handleDelete = async (e) => {
