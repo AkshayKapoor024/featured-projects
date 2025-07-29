@@ -5,10 +5,15 @@ import Footer from '../components/Footer';
 import Card from '../components/card/Card';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
-
+import { useLocation } from 'react-router-dom';
 function Homepage() {
   const [events, setEvents] = useState([]);
-
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+ const query = useQuery();
+  const calendarStatus = query.get('calendar');
+  
   const fetchEvents = async () => {
     await axios.get('https://schedulo-server-pfcu.onrender.com/events')
       .then((res) => {
@@ -37,6 +42,15 @@ useEffect(() => {
 
   return () => clearTimeout(timer);
 }, []);
+
+ useEffect(() => {
+    if (calendarStatus === 'success') {
+      toast.success('Calendar Integration successfull!')
+      // Show toast or modal
+    }else if(calendarStatus==='failure'){
+      toast.error('Calendar Integration failed try again!')
+    }
+  }, [calendarStatus]);
 
 
   useEffect(() => {
