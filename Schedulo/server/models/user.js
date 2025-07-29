@@ -42,12 +42,12 @@ const userSchema = new mongoose.Schema({
     type:String,
     default:'https://wallpaperaccess.com/full/959317.jpg'
   },
+  calendar: {
+  accessToken: String,
+  refreshToken: String
+}
 });
 
-userSchema.plugin(passportLocalMongoose, {
-  usernameField: 'email',
-  usernameUnique: false // 🔑 prevents duplicate username index
-});
-
+userSchema.plugin(passportLocalMongoose,{usernameField:'email'})
 const User = mongoose.model('user',userSchema)
 module.exports=User
